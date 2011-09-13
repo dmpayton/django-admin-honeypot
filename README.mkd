@@ -1,6 +1,6 @@
 # django-admin-honeypot
 
-django-admin-honeypot is fake Django admin login page that logs all attempts to login in the database. The purpose is to give admins insight into who is attempting to gain unauthorized access to their Django-powered website.
+django-admin-honeypot is fake Django admin login page that logs all attempts to login in the database. The purpose is to give administrators some insight into who is attempting to gain unauthorized access to their Django-powered website.
 
 * **Author**: [Derek Payton](http://dmpayton.com)
 * **Version**: 0.1.0
@@ -8,8 +8,20 @@ django-admin-honeypot is fake Django admin login page that logs all attempts to 
 
 ## Usage
 
-* Add `admin_honeypot` to `INSTALLED_APPS`.
-* Update urls.py:
+* Add `admin_honeypot` to `INSTALLED_APPS`.  
+* Update your urls.py:
 
-    url(r'^admin/', include('admin_honeypot.urls')),
-    url(r'^secret/', include(admin.site.urls)),
+    ```
+    urlpatterns = patterns(''
+        ...
+        url(r'^admin/', include('admin_honeypot.urls')),
+        url(r'^secret/', include(admin.site.urls)),
+    )
+    ```
+
+## Signals
+
+`admin_honeypot.signals.honeypot` is called on every login attempt with the following arguments:
+
+* **instance**: The LoginAttempt object created
+* **request**: The current request object
