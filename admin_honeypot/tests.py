@@ -11,5 +11,5 @@ class AdminHoneypotTest(TestCase):
             }
         response = self.client.post(reverse('admin_honeypot'), data)
         attempt = LoginAttempt.objects.latest('pk')
-        self.assertEqual(data['username'], data['username'])
-        self.assertEqual(data['password'], data['password'])
+        self.assertEqual(data['username'], attempt.username)
+        self.assertEqual(data['password'], attempt.password)
