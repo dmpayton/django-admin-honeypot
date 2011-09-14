@@ -46,7 +46,7 @@ setup(
     maintainer = 'Derek Payton',
     maintainer_email = 'derek.payton@gmail.com',
     url='https://github.com/dmpayton/django-admin-honeypot',
-    download_url='https://github.com/dmpayton/django-admin-honeypot/tarball/v0.1.0',
+    download_url='https://github.com/dmpayton/django-admin-honeypot/tarball/v%s' % __version__,
     license='MIT License',
     include_package_data=True,
     packages=packages,
