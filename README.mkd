@@ -6,6 +6,30 @@ django-admin-honeypot is fake Django admin login page that logs all attempts to 
 * **Version**: 0.1.0
 * **License**: MIT
 
+## Installation
+
+django-admin-honeypot can be installed in any number of the usual ways:
+
+```
+easy_install django-admin-honeypot
+```
+
+```
+pip install django-admin-honeypot
+```
+
+```
+pip install -e git+git://github.com/dmpayton/django-admin-honeypot.git#egg=django-admin-honeypot
+```
+
+```
+git clone git://github.com/dmpayton/django-admin-honeypot.git
+cd django-admin-honeypot
+python setup.py install
+```
+
+etc...
+
 ## Usage
 
 * Add `admin_honeypot` to `INSTALLED_APPS`.
