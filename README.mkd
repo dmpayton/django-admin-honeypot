@@ -3,7 +3,7 @@
 django-admin-honeypot is fake Django admin login page that logs all attempts to login in the database. The purpose is to give administrators some insight into who is attempting to gain unauthorized access to their Django-powered website.
 
 * **Author**: [Derek Payton](http://dmpayton.com)
-* **Version**: 0.1.0
+* **Version**: 0.1.1
 * **License**: MIT
 
 ## Installation
