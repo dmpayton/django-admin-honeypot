@@ -1,16 +1,15 @@
-"""
-This file demonstrates writing tests using the unittest module. These will pass
-when you run "manage.py test".
-
-Replace this with more appropriate tests for your application.
-"""
-
+from admin_honeypot.models import LoginAttempt
+from django.core.urlresolvers import reverse
 from django.test import TestCase
 
 
-class SimpleTest(TestCase):
-    def test_basic_addition(self):
-        """
-        Tests that 1 + 1 always equals 2.
-        """
-        self.assertEqual(1 + 1, 2)
+class AdminHoneypotTest(TestCase):
+    def test_admin_honeypot(self):
+        data = {
+            'username': 'admin',
+            'password': 'letmein'
+            }
+        response = self.client.post(reverse('admin_honeypot'), data)
+        attempt = LoginAttempt.objects.latest('pk')
+        self.assertEqual(data['username'], data['username'])
+        self.assertEqual(data['password'], data['password'])

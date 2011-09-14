@@ -8,7 +8,7 @@ django-admin-honeypot is fake Django admin login page that logs all attempts to 
 
 ## Usage
 
-* Add `admin_honeypot` to `INSTALLED_APPS`.  
+* Add `admin_honeypot` to `INSTALLED_APPS`.
 * Update your urls.py:
 
     ```
@@ -25,3 +25,9 @@ django-admin-honeypot is fake Django admin login page that logs all attempts to 
 
 * **instance**: The LoginAttempt object created
 * **request**: The current request object
+
+## Testing
+
+    python manage.py test admin_honeypot
+
+Currently there is a single test that submits the fake login form and checks that the data was saved to the database.
