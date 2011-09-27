@@ -33,8 +33,8 @@ class AdminHoneypotTest(TestCase):
 
     def test_trailing_slash(self):
         """
-        /admin/foo redirects to /admin/foo/
+        /admin/foo redirects to /admin/foo/ permanent redirect.
         """
         url = reverse('admin_honeypot')
         response = self.client.get(url + 'foo')
-        self.assertRedirects(response, url + 'foo/')
+        self.assertRedirects(response, url + 'foo/', status_code=301)

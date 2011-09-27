@@ -10,7 +10,7 @@ from django.utils.translation import ugettext as _
 def admin_honeypot(request, extra_context=None):
     path = request.get_full_path()
     if not path.endswith('/'):
-        return redirect(path + '/')
+        return redirect(path + '/', permanent=True)
 
     context = {
         'app_path': path,
