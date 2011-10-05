@@ -2,6 +2,8 @@
 
 django-admin-honeypot is fake Django admin login page that logs all attempts to login in the database. The purpose is to give administrators some insight into who is attempting to gain unauthorized access to their Django-powered website.
 
+This app was inspired by discussion in and around Paul McMillan's security talk at DjangoCon 2011.
+
 * **Author**: [Derek Payton](http://dmpayton.com)
 * **Version**: 0.1.1
 * **License**: MIT
@@ -50,8 +52,9 @@ etc...
 * **instance**: The LoginAttempt object created
 * **request**: The current request object
 
+You can setup custom listeners on this signal to, e.g., notify site admins of potential break-in attempts.
+
 ## Testing
 
     python manage.py test admin_honeypot
 
-Currently there is a single test that submits the fake login form and checks that the data was saved to the database.
