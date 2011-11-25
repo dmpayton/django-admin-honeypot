@@ -4,9 +4,6 @@ from django.utils.translation import ugettext as _
 
 class HoneypotLoginForm(AdminAuthenticationForm):
     def clean(self):
-        username = self.cleaned_data.get('username')
-        password = self.cleaned_data.get('password')
-        message = ERROR_MESSAGE
-        if '@' in username:
-            message = _("Your e-mail address is not your username. Try '%s' instead.") % user.username
-        raise forms.ValidationError(message)
+        ## Always raise the default error message, because we don't
+        ## care what they entered here.
+        raise forms.ValidationError(ERROR_MESSAGE)
