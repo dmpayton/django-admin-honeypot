@@ -1,4 +1,5 @@
 from django.db import models
+from admin_honeypot import listeners
 
 class LoginAttempt(models.Model):
     username = models.CharField(max_length=255, blank=True, null=True)
