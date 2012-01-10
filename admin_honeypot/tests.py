@@ -6,7 +6,7 @@ from django.test import TestCase
 #from django.test.utils import override_settings # Waiting on 1.4
 
 class AdminHoneypotTest(TestCase):
-    #urls = 'admin_honeypot.urls'
+    urls = 'admin_honeypot.urls'
 
     def test_create_login_attempt(self):
         """
