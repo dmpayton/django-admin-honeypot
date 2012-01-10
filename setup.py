@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import os
-from admin_honeypot import __version__, __description__
+from admin_honeypot import __version__, __description__, __license__
 from setuptools import setup, find_packages
 
 ## Package detection from django-registration
@@ -47,7 +47,7 @@ setup(
     maintainer_email = 'derek.payton@gmail.com',
     url='https://github.com/dmpayton/django-admin-honeypot',
     download_url='https://github.com/dmpayton/django-admin-honeypot/tarball/v%s' % __version__,
-    license='MIT License',
+    license=__license__,
     include_package_data=True,
     packages=packages,
     package_data={'admin_honeypot': data_files},
