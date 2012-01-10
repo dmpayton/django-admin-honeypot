@@ -1,0 +1,7 @@
+1. Update version info
+ * README.mkd
+ * admin_honeypot/__init__.py
+
+2. git tag -a vX.Y.Z -m 'Version X.Y.Z'
+
+3. python setup.py sdist upload
