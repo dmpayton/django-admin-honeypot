@@ -1,2 +1,3 @@
 include LICENSE
 include README.mkd
+recursive-include admin_honeypot/templates *
