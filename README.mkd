@@ -6,8 +6,6 @@ django-admin-honeypot is a fake Django admin login screen to notify admins of at
 * **Version**: 0.1.2
 * **License**: MIT
 
-**Requires Django >= 1.3**
-
 ## Installation
 
 django-admin-honeypot can be installed in any number of the usual ways:
