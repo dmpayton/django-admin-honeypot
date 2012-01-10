@@ -3,7 +3,7 @@
 django-admin-honeypot is a fake Django admin login screen to notify admins of attempted unauthorized access. This app was inspired by discussion in and around Paul McMillan's security talk at DjangoCon 2011.
 
 * **Author**: [Derek Payton](http://dmpayton.com)
-* **Version**: 0.2.0
+* **Version**: 0.2.1
 * **License**: MIT
 
 ## Installation
