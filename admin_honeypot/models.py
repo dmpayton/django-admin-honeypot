@@ -8,6 +8,7 @@ class LoginAttempt(models.Model):
     session_key = models.CharField(max_length=50, blank=True, null=True)
     user_agent = models.TextField(blank=True, null=True)
     timestamp = models.DateTimeField(auto_now_add=True)
+    path = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
         ordering = ('timestamp',)
