@@ -1,0 +1,32 @@
+Welcome to django-admin-honeypot's documentation!
+=================================================
+
+`django-admin-honeypot`_ is a fake Django admin login screen to log and notify
+admins of attempted unauthorized access. This app was inspired by discussion in
+and around Paul McMillan's security talk at DjangoCon 2011.
+
+:Author: `Derek Payton`_
+:Version: 0.2.1
+:License: `MIT`_
+
+Contents:
+
+.. toctree::
+   :maxdepth: 2
+
+   manual/install
+   manual/reference
+   manual/faq
+
+
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
+
+.. _django-admin-honeypot: https://github.com/dmpayton/django-admin-honeypot
+.. _Derek Payton: http://dmpayton.com
+.. _MIT: https://github.com/dmpayton/django-admin-honeypot/blob/master/LICENSE
