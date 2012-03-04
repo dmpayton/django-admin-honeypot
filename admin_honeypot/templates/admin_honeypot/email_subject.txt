@@ -1,1 +1,1 @@
-admin_honeypot login from {{ instance.ip_address }}
+[admin-honeypot] attempted login from {{ instance.ip_address }} at {{ site.name }}

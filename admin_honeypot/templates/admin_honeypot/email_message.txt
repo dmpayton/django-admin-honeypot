@@ -1,7 +1,9 @@
 This is an automatic email to notify you that someone tried to login to the
-admin honeypot on {{ site.name }} from the following IP address:
+admin honeypot on {{ site.name }}:
 
-    {{ instance.ip_address }}
+Username: {{ instance.username }}
+IP Address: {{ instance.ip_address }}
+Timestamp: {{ instance.timestamp }}
 
 http://{{ site.domain }}{% url admin:admin_honeypot_loginattempt_change instance.pk %}
 
