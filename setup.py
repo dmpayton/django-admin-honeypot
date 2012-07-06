@@ -7,6 +7,11 @@ A fake Django admin login screen to notify admins of attempted unauthorized
 access. This app was inspired by discussion in and around Paul McMillan's
 security talk at DjangoCon 2011.
 
+|travis-ci|_
+
+.. |travis-ci| image:: https://secure.travis-ci.org/dmpayton/django-admin-honeypot.png
+.. _travis-ci: http://travis-ci.org/dmpayton/django-admin-honeypot
+
 Basic Usage:
 
 * Add ``admin_honeypot`` to ``settings.INSTALLED_APPS``
