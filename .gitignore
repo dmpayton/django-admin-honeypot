@@ -4,4 +4,5 @@
 build/
 coverage.xml
 dist/
+django_admin_honeypot.egg-info/
 pep8.txt
