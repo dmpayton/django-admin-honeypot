@@ -11,7 +11,6 @@ EMAIL_ADMINS_SETTINGS = {
 }
 
 class AdminHoneypotTest(TestCase):
-    #urls = 'admin_honeypot.urls'
 
     def test_create_login_attempt(self):
         """
@@ -27,6 +26,7 @@ class AdminHoneypotTest(TestCase):
         self.assertEqual(data['password'], attempt.password)
         self.assertEqual(data['username'], unicode(attempt))
 
+
     @override_settings(**EMAIL_ADMINS_SETTINGS)
     def test_email_admins(self):
         """
@@ -40,6 +40,7 @@ class AdminHoneypotTest(TestCase):
         self.assertTrue(len(mail.outbox) > 0) ## We sent at least one email...
         self.assertIn(settings.ADMINS[0][1], mail.outbox[0].to) ## ...to an admin
 
+
     def test_arbitrary_urls(self):
         """
         The Django admin displays a login screen for everything under /admin/
@@ -48,12 +49,20 @@ class AdminHoneypotTest(TestCase):
             'username': 'admin',
             'password': 'letmein',
         }
+        url_list = (
+            'auth/',
+            'comments/moderate/',
+            'flatpages/flatpage/?ot=desc&o=1'
+            'auth/user/1/',
+        )
         base_url = reverse('admin_honeypot')
-        for url in ('auth/', 'comments/moderate/', 'auth/user/1/'):
+        for url in url_list:
             response = self.client.post(base_url + url, data)
             attempt = LoginAttempt.objects.latest('pk')
+            self.assertEqual(base_url + url, attempt.path)
             self.assertEqual(data['username'], attempt.username)
             self.assertEqual(data['password'], attempt.password)
+
 
     def test_trailing_slash(self):
         """
