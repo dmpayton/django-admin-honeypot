@@ -4,7 +4,7 @@ Installation
 Requirements
 ------------
 
-* Django 1.3+ (but may work with prior versions)
+* Django 1.3+
 
 Install
 -------
