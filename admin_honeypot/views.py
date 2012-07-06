@@ -21,7 +21,7 @@ def admin_honeypot(request, extra_context=None):
     }
     context['form'].is_valid()
     context.update(extra_context or {})
-    if len(path)>255:
+    if len(path) > 255:
         path = path[:230] +  '...(%d chars)' % len(path)
     if request.method == 'POST':
         failed = LoginAttempt.objects.create(

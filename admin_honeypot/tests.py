@@ -3,12 +3,7 @@ from django.conf import settings
 from django.core import mail
 from django.core.urlresolvers import reverse
 from django.test import TestCase
-from django.test.utils import override_settings
 
-EMAIL_ADMINS_SETTINGS = {
-    'ADMINS': (('Admin User', 'admin@example.com'),),
-    'ADMIN_HONEYPOT_EMAIL_ADMINS': True,
-}
 
 class AdminHoneypotTest(TestCase):
 
@@ -27,7 +22,6 @@ class AdminHoneypotTest(TestCase):
         self.assertEqual(data['username'], unicode(attempt))
 
 
-    @override_settings(**EMAIL_ADMINS_SETTINGS)
     def test_email_admins(self):
         """
         An email is sent to settings.ADMINS

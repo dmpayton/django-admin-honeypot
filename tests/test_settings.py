@@ -6,7 +6,7 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+    ('Admin User', 'admin@example.com')
 )
 
 MANAGERS = ADMINS
@@ -116,7 +116,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+    #'django.contrib.staticfiles',
     'admin_honeypot',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
@@ -152,3 +152,5 @@ LOGGING = {
         },
     }
 }
+
+ADMIN_HONEYPOT_EMAIL_ADMINS = True
