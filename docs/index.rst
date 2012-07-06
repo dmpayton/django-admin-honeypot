@@ -9,6 +9,11 @@ and around Paul McMillan's security talk at DjangoCon 2011.
 :Version: 0.2.1
 :License: `MIT`_
 
+|travis-ci|_
+
+.. |travis-ci| image:: https://secure.travis-ci.org/dmpayton/django-admin-honeypot.png
+.. _travis-ci: http://travis-ci.org/dmpayton/django-admin-honeypot
+
 Contents:
 
 .. toctree::
@@ -17,6 +22,7 @@ Contents:
    manual/install
    manual/reference
    manual/faq
+   manual/testing
 
 
 

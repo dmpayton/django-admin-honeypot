@@ -20,10 +20,3 @@ Sent on every login attempt with the following arguments:
 
 :instance: The LoginAttempt object created
 :request: The current request object
-
-Testing
--------
-
-::
-
-    python manage.py test admin_honeypot
