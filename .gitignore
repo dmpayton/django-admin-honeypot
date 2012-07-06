@@ -1,3 +1,5 @@
-.DS_Store
 *.py[co]
 *.komodoproject
+.DS_Store
+coverage.xml
+pep8.txt

@@ -20,7 +20,11 @@ Basic Usage:
 """
 import os
 from admin_honeypot import __version__, __description__, __license__
-from setuptools import setup, find_packages
+
+try:
+    from setuptools import setup, find_packages
+except ImportError:
+    from distutils.core import setup, find_packages
 
 setup(
     name='django-admin-honeypot',
@@ -44,6 +48,12 @@ setup(
     download_url='https://github.com/dmpayton/django-admin-honeypot/tarball/v%s' % __version__,
     license=__license__,
     include_package_data=True,
-    packages=find_packages(),
+    packages=find_packages(exclude=('tests',)),
+    test_suite='tests.setuptest.SetupTestSuite',
+    tests_require=(
+        'coverage',
+        'django',
+        'pep8==1.3.1',
+      ),
     zip_safe=False,
     )
