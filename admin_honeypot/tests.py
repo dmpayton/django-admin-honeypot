@@ -8,7 +8,7 @@ from django.test.utils import override_settings
 EMAIL_ADMINS_SETTINGS = {
     'ADMINS': (('Admin User', 'admin@example.com'),),
     'ADMIN_HONEYPOT_EMAIL_ADMINS': True,
-    }
+}
 
 class AdminHoneypotTest(TestCase):
     #urls = 'admin_honeypot.urls'
@@ -20,11 +20,12 @@ class AdminHoneypotTest(TestCase):
         data = {
             'username': 'admin',
             'password': 'letmein'
-            }
+        }
         response = self.client.post(reverse('admin_honeypot'), data)
         attempt = LoginAttempt.objects.latest('pk')
         self.assertEqual(data['username'], attempt.username)
         self.assertEqual(data['password'], attempt.password)
+        self.assertEqual(data['username'], unicode(attempt))
 
     @override_settings(**EMAIL_ADMINS_SETTINGS)
     def test_email_admins(self):
@@ -34,7 +35,7 @@ class AdminHoneypotTest(TestCase):
         response = self.client.post(reverse('admin_honeypot'), {
             'username': 'admin',
             'password': 'letmein'
-            })
+        })
         ## CONSIDER: Is there a better way to do this?
         self.assertTrue(len(mail.outbox) > 0) ## We sent at least one email...
         self.assertIn(settings.ADMINS[0][1], mail.outbox[0].to) ## ...to an admin

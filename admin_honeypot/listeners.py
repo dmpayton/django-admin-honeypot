@@ -10,7 +10,7 @@ def notify_admins(instance, request, **kwargs):
         'request': request,
         'instance': instance,
         'site': get_current_site(request),
-        }
+    }
     subject = render_to_string('admin_honeypot/email_subject.txt', context).strip()
     message = render_to_string('admin_honeypot/email_message.txt', context).strip()
     mail_admins(subject=subject, message=message)

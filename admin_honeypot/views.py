@@ -18,7 +18,7 @@ def admin_honeypot(request, extra_context=None):
         REDIRECT_FIELD_NAME: path,
         'site': Site.objects.get_current(),
         'title': _('Log in'),
-        }
+    }
     context['form'].is_valid()
     context.update(extra_context or {})
     if request.method == 'POST':
@@ -28,6 +28,6 @@ def admin_honeypot(request, extra_context=None):
             session_key=request.session.session_key,
             ip_address=request.META.get('REMOTE_ADDR'),
             user_agent=request.META.get('HTTP_USER_AGENT'),
-            )
+        )
         honeypot.send(sender=LoginAttempt, instance=failed, request=request)
     return render_to_response('admin/login.html', context, context_instance=RequestContext(request))
