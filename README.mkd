@@ -8,6 +8,8 @@ in and around Paul McMillan's security talk at DjangoCon 2011.
 * **Version**: 0.2.1
 * **License**: MIT
 
+[![Build Status](https://secure.travis-ci.org/dmpayton/django-admin-honeypot.png)](http://travis-ci.org/dmpayton/django-admin-honeypot)
+
 ## Documentation
 
 http://django-admin-honeypot.readthedocs.org
