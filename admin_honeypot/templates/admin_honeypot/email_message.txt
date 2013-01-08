@@ -5,7 +5,7 @@ Username: {{ instance.username }}
 IP Address: {{ instance.ip_address }}
 Timestamp: {{ instance.timestamp }}
 
-http://{{ site.domain }}{% url admin:admin_honeypot_loginattempt_change instance.pk %}
+http://{{ site.domain }}{% url "admin:admin_honeypot_loginattempt_change" instance.pk %}
 
 ----
 django-admin-honeypot
