@@ -14,7 +14,7 @@ env:
 install:
   - pip install -q django==$DJANGO_VERSION
   - pip install -q coverage
-  - pip install -q pep8==1.3.1
+  - pip install -q pep8
   - python setup.py -q install
 
 script: python setup.py test
