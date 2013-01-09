@@ -57,8 +57,8 @@ setup(
     test_suite='tests.setuptest.SetupTestSuite',
     tests_require=(
         'coverage',
-        'django',
-        'pep8==1.3.1',
+        'django>=1.3',
+        'pep8',
       ),
     zip_safe=False,
     )
