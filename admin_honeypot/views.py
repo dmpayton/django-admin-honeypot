@@ -7,6 +7,7 @@ from django.shortcuts import render_to_response, redirect
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
 
+
 def admin_honeypot(request, extra_context=None):
     if not request.path.endswith('/'):
         return redirect(request.path + '/', permanent=True)
@@ -22,7 +23,7 @@ def admin_honeypot(request, extra_context=None):
     context['form'].is_valid()
     context.update(extra_context or {})
     if len(path) > 255:
-        path = path[:230] +  '...(%d chars)' % len(path)
+        path = path[:230] + '...(%d chars)' % len(path)
     if request.method == 'POST':
         failed = LoginAttempt.objects.create(
             username=request.POST.get('username'),

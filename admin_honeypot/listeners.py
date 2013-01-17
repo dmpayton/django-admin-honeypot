@@ -1,15 +1,15 @@
 from admin_honeypot.signals import honeypot
 from django.conf import settings
 from django.contrib.sites.models import get_current_site
-from django.core.exceptions import ImproperlyConfigured
 from django.core.mail import mail_admins
 from django.core.urlresolvers import reverse
 from django.template.loader import render_to_string
 
+
 def notify_admins(instance, request, **kwargs):
     site = get_current_site(request)
-    admin_detail_url = 'http://{0}{1}'.format(site.domain,
-        reverse('admin:admin_honeypot_loginattempt_change', args=(instance.pk,)))
+    path = reverse('admin:admin_honeypot_loginattempt_change', args=(instance.pk,))
+    admin_detail_url = 'http://{0}{1}'.format(site.domain, path)
     context = {
         'request': request,
         'instance': instance,

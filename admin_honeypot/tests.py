@@ -21,7 +21,6 @@ class AdminHoneypotTest(TestCase):
         self.assertEqual(data['password'], attempt.password)
         self.assertEqual(data['username'], unicode(attempt))
 
-
     def test_email_admins(self):
         """
         An email is sent to settings.ADMINS
@@ -33,7 +32,6 @@ class AdminHoneypotTest(TestCase):
         ## CONSIDER: Is there a better way to do this?
         self.assertTrue(len(mail.outbox) > 0) ## We sent at least one email...
         self.assertIn(settings.ADMINS[0][1], mail.outbox[0].to) ## ...to an admin
-
 
     def test_arbitrary_urls(self):
         """
@@ -56,7 +54,6 @@ class AdminHoneypotTest(TestCase):
             self.assertEqual(base_url + url, attempt.path)
             self.assertEqual(data['username'], attempt.username)
             self.assertEqual(data['password'], attempt.password)
-
 
     def test_trailing_slash(self):
         """
