@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.admin.forms import AdminAuthenticationForm, ERROR_MESSAGE
-from django.utils.translation import ugettext as _
+
 
 class HoneypotLoginForm(AdminAuthenticationForm):
     def clean(self):

@@ -23,7 +23,7 @@ Basic Usage:
         url(r'^secret/', include(admin.site.urls)),
     )
 """
-import os
+
 from admin_honeypot import __version__, __description__, __license__
 
 try:
@@ -47,8 +47,8 @@ setup(
         'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
         ],
     keywords='django admin honeypot trap',
-    maintainer = 'Derek Payton',
-    maintainer_email = 'derek.payton@gmail.com',
+    maintainer='Derek Payton',
+    maintainer_email='derek.payton@gmail.com',
     url='https://github.com/dmpayton/django-admin-honeypot',
     download_url='https://github.com/dmpayton/django-admin-honeypot/tarball/v%s' % __version__,
     license=__license__,

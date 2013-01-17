@@ -1,6 +1,7 @@
 from django.contrib import admin
 from admin_honeypot.models import LoginAttempt
 
+
 class LoginAttemptAdmin(admin.ModelAdmin):
     list_display = ('username', 'get_ip_address', 'get_session_key', 'timestamp', 'get_path')
     list_filter = ('timestamp',)
@@ -16,7 +17,7 @@ class LoginAttemptAdmin(admin.ModelAdmin):
         return '<a href="?ip_address=%(ip)s">%(ip)s</a>' % {'ip': instance.ip_address}
     get_ip_address.short_description = 'IP Address'
     get_ip_address.allow_tags = True
-    
+
     def get_path(self, instance):
         return '<a href="?path=%(path)s">%(path)s</a>' % {'path': instance.path}
     get_path.short_description = 'URL'
