@@ -5,8 +5,13 @@ from admin_honeypot.models import LoginAttempt
 class LoginAttemptAdmin(admin.ModelAdmin):
     list_display = ('username', 'get_ip_address', 'get_session_key', 'timestamp', 'get_path')
     list_filter = ('timestamp',)
-    readonly_fields = ('username', 'password', 'ip_address', 'session_key', 'user_agent')
+    readonly_fields = ('path', 'username', 'password', 'ip_address', 'session_key', 'user_agent')
     search_fields = ('username', 'password', 'ip_address', 'user_agent', 'path')
+
+    def get_actions(self, request):
+        actions = super(LoginAttemptAdmin, self).get_actions(request)
+        del actions['delete_selected']
+        return actions
 
     def get_session_key(self, instance):
         return '<a href="?session_key=%(key)s">%(key)s</a>' % {'key': instance.session_key}
