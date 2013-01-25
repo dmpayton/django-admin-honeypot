@@ -7,7 +7,6 @@ from django.shortcuts import render_to_response, redirect
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
 
-
 def admin_honeypot(request, extra_context=None):
     if not request.path.endswith('/'):
         return redirect(request.path + '/', permanent=True)
@@ -34,4 +33,5 @@ def admin_honeypot(request, extra_context=None):
             path=path,
         )
         honeypot.send(sender=LoginAttempt, instance=failed, request=request)
-    return render_to_response('admin/login.html', context, context_instance=RequestContext(request))
+    return render_to_response('admin_honeypot/login.html', context,
+        context_instance=RequestContext(request))
