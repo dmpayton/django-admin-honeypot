@@ -1,8 +1,9 @@
+==========================
 Frequently Asked Questions
 ==========================
 
 Why can't I delete login attempts from the Django admin?
---------------------------------------------------------
+========================================================
 
 The delete permsission has been set to false for all users -- including
 superusers -- as an added security precaution. This is done so that, in the
@@ -10,7 +11,7 @@ event that an attacker does make it into your admin, it will be harder to cover
 up their tracks if they had previously tried to break in through the honeypot.
 
 Why is the IP address logged as 127.0.0.1?
-------------------------------------------
+==========================================
 
 Django-admin-honeypot pulls the users IP address from the ``REMOTE_ADDR``
 request header. If your Django app is behind a load balancer or proxy web

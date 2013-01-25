@@ -1,3 +1,4 @@
+=================================================
 Welcome to django-admin-honeypot's documentation!
 =================================================
 
@@ -14,12 +15,19 @@ and around Paul McMillan's security talk at DjangoCon 2011.
 .. |travis-ci| image:: https://secure.travis-ci.org/dmpayton/django-admin-honeypot.png
 .. _travis-ci: http://travis-ci.org/dmpayton/django-admin-honeypot
 
-Contents:
+**Source**
+    `github.com/dmpayton/django-admin-honeypot <https://github.com/dmpayton/django-admin-honeypot>`_
+
+**Documentation**
+    `django-admin-honeypot.readthedocs.org <https://django-admin-honeypot.readthedocs.org/>`_
+
+**Contents**
 
 .. toctree::
    :maxdepth: 2
 
    manual/install
+   manual/usage
    manual/reference
    manual/faq
    manual/testing
