@@ -7,7 +7,7 @@ admins of attempted unauthorized access. This app was inspired by discussion in
 and around Paul McMillan's security talk at DjangoCon 2011.
 
 :Author: `Derek Payton`_
-:Version: 0.2.4
+:Version: 0.2.5
 :License: `MIT`_
 
 |travis-ci|_
