@@ -2,10 +2,10 @@ from admin_honeypot.forms import HoneypotLoginForm
 from admin_honeypot.models import LoginAttempt
 from admin_honeypot.signals import honeypot
 from django.contrib.auth import REDIRECT_FIELD_NAME
-from django.contrib.sites.models import Site
 from django.shortcuts import render_to_response, redirect
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
+
 
 def admin_honeypot(request, extra_context=None):
     if not request.path.endswith('/'):
@@ -16,7 +16,6 @@ def admin_honeypot(request, extra_context=None):
         'app_path': path,
         'form': HoneypotLoginForm(request, request.POST or None),
         REDIRECT_FIELD_NAME: path,
-        'site': Site.objects.get_current(),
         'title': _('Log in'),
     }
     context['form'].is_valid()

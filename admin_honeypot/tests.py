@@ -7,6 +7,23 @@ from django.test import TestCase
 
 class AdminHoneypotTest(TestCase):
 
+    def test_same_content(self):
+        """
+        The honeypot should be an exact replica of the admin login page,
+        with the exception of where the form submits to.
+        """
+
+        admin_url = reverse('admin:index')
+        honeypot_url = reverse('admin_honeypot')
+
+        admin_html = self.client.get(admin_url).content
+        honeypot_html = self.client.get(honeypot_url).content.replace(
+            '"{0}"'.format(honeypot_url),
+            '"{0}"'.format(admin_url)
+        )
+
+        self.assertEqual(honeypot_html, admin_html)
+
     def test_create_login_attempt(self):
         """
         A new LoginAttempt object is created
