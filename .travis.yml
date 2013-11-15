@@ -1,18 +1,28 @@
 language: python
 python:
-  - "2.6"
   - "2.7"
+  - "3.2"
+  - "3.3"
 
 env:
-  - DJANGO_VERSION=1.6
-  - DJANGO_VERSION=1.5.5
-  - DJANGO_VERSION=1.4.10
-  - DJANGO_VERSION=1.3.7
+  - DJANGO=1.6
+  - DJANGO=1.5.5
+  - DJANGO=1.4.10
+  - DJANGO=1.3.7
+
+matrix:
+    exclude:
+        - python: "3.2"
+          env: DJANGO=1.3.7
+        - python: "3.2"
+          env: DJANGO=1.4.10
+        - python: "3.3"
+          env: DJANGO=1.3.7
+        - python: "3.3"
+          env: DJANGO=1.4.10
 
 install:
-  - pip install -q django==$DJANGO_VERSION
-  - pip install -q coverage
-  - pip install -q pep8
+  - pip install -q django==$DJANGO --use-mirrors
   - python setup.py -q install
 
 script: python setup.py test

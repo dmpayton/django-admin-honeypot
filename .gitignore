@@ -1,6 +1,9 @@
+*.egg
 *.py[co]
 *.komodoproject
 .DS_Store
+.tox
+__pycache__
 build/
 coverage.xml
 dist/

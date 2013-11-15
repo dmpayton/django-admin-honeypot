@@ -17,5 +17,5 @@ class LoginAttempt(models.Model):
         verbose_name_plural = _("login attempts")
         ordering = ('timestamp',)
 
-    def __unicode__(self):
-        return unicode(self.username)
+    def __str__(self):
+        return self.username

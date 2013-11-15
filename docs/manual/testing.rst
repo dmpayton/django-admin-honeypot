@@ -26,6 +26,28 @@ See *requirements.txt*:
 Running the tests
 -----------------
 
-::
+Once your requirements ae installed, the unit tests can be run with::
 
     $ python setup.py test
+
+    ...
+
+    ----------------------------------------------------------------------
+    Ran 5 tests in 0.174s
+
+    OK
+
+
+For testing against different Python versions, we use `Tox`_::
+
+    $ tox
+
+    ...
+
+    _______________ summary _______________
+    py27: commands succeeded
+    py33: commands succeeded
+    congratulations :)
+
+
+.. _Tox: http://tox.readthedocs.org/
