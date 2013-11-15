@@ -1,9 +1,8 @@
-This is an automatic email to notify you that someone tried to login to the
-admin honeypot on {{ request.get_host }}:
+{% load i18n %}{% blocktrans with request.get_host as host %}This is an automatic email to notify you that someone tried to login to the admin honeypot on {{ host }}{% endblocktrans %}:
 
-Username: {{ instance.username }}
-IP Address: {{ instance.ip_address }}
-Timestamp: {{ instance.timestamp }}
+{% trans "Username" %}: {{ instance.username }}
+{% trans "IP Address" %}": {{ instance.ip_address }}
+{% trans "Timestamp" %}: {{ instance.timestamp }}
 
 {{ admin_detail_url }}
 
