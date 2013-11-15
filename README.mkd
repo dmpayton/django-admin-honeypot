@@ -1,7 +1,9 @@
 # django-admin-honeypot
 
 [![Build Status](https://secure.travis-ci.org/dmpayton/django-admin-honeypot.png)](http://travis-ci.org/dmpayton/django-admin-honeypot)
+[![Coverage Status](https://coveralls.io/repos/dmpayton/django-admin-honeypot/badge.png)](https://coveralls.io/r/dmpayton/django-admin-honeypot)
 [![Downloads](https://pypip.in/d/django-admin-honeypot/badge.png)](https://crate.io/packages/django-admin-honeypot/)
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/dmpayton/django-admin-honeypot/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
 django-admin-honeypot is a fake Django admin login screen to log and notify
 admins of attempted unauthorized access. This app was inspired by discussion
