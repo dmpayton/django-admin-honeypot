@@ -29,4 +29,4 @@ matrix:
 
 script: python setup.py test
 
-after_success: coveralls
+after_success: coveralls --data_file coverage.xml
