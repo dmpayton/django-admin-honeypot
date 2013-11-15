@@ -26,7 +26,7 @@ See *requirements.txt*:
 Running the tests
 -----------------
 
-Once your requirements ae installed, the unit tests can be run with::
+Once your requirements are installed, the unit tests can be run with::
 
     $ python setup.py test
 
@@ -38,7 +38,10 @@ Once your requirements ae installed, the unit tests can be run with::
     OK
 
 
-For testing against different Python versions, we use `Tox`_::
+For testing against different Python versions, we use `Tox`_. Please be aware
+that this only tests against the latest Django release.
+
+::
 
     $ tox
 
