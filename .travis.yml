@@ -12,6 +12,7 @@ env:
   - DJANGO=1.3.7
 
 install:
+  - pip install -q -r requirements.txt --use-mirrors
   - pip install -q django==$DJANGO --use-mirrors
   - python setup.py -q install
 
