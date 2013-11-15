@@ -1,6 +1,7 @@
 *.egg
 *.py[co]
 *.komodoproject
+.coveralls
 .DS_Store
 .tox
 __pycache__
