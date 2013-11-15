@@ -13,7 +13,7 @@ env:
 
 install:
   - pip install -q -r requirements.txt --use-mirrors
-  - pip install -q django==$DJANGO --use-mirrors
+  - pip install -q -I django==$DJANGO --use-mirrors
   - python setup.py -q install
 
 matrix:
