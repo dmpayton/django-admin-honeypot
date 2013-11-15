@@ -24,6 +24,7 @@ Basic Usage:
     )
 """
 
+import sys
 from admin_honeypot import __version__, __description__, __license__
 
 try:
@@ -53,12 +54,11 @@ setup(
     download_url='https://github.com/dmpayton/django-admin-honeypot/tarball/v%s' % __version__,
     license=__license__,
     include_package_data=True,
-    packages=find_packages(exclude=('tests',)),
-    test_suite='tests.setuptest.SetupTestSuite',
+    packages=find_packages(),
+    test_suite='setuptest.setuptest.SetupTestSuite',
     tests_require=(
-        'coverage',
         'django>=1.3',
-        'pep8',
-      ),
+        'django-setuptest',
+        ),
     zip_safe=False,
     )

@@ -16,8 +16,8 @@ class AdminHoneypotTest(TestCase):
         admin_url = reverse('admin:index')
         honeypot_url = reverse('admin_honeypot')
 
-        admin_html = self.client.get(admin_url).content
-        honeypot_html = self.client.get(honeypot_url).content.replace(
+        admin_html = self.client.get(admin_url).content.decode('utf-8')
+        honeypot_html = self.client.get(honeypot_url).content.decode('utf-8').replace(
             '"{0}"'.format(honeypot_url),
             '"{0}"'.format(admin_url)
         )
@@ -36,7 +36,7 @@ class AdminHoneypotTest(TestCase):
         attempt = LoginAttempt.objects.latest('pk')
         self.assertEqual(data['username'], attempt.username)
         self.assertEqual(data['password'], attempt.password)
-        self.assertEqual(data['username'], unicode(attempt))
+        self.assertEqual(data['username'], str(attempt))
 
     def test_email_admins(self):
         """
