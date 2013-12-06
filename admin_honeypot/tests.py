@@ -47,8 +47,9 @@ class AdminHoneypotTest(TestCase):
             'password': 'letmein'
         })
         ## CONSIDER: Is there a better way to do this?
-        self.assertTrue(len(mail.outbox) > 0) ## We sent at least one email...
-        self.assertIn(settings.ADMINS[0][1], mail.outbox[0].to) ## ...to an admin
+        if settings.ADMIN_HONEYPOT_EMAIL_ADMINS:
+            self.assertTrue(len(mail.outbox) > 0) ## We sent at least one email...
+            self.assertIn(settings.ADMINS[0][1], mail.outbox[0].to) ## ...to an admin
 
     def test_arbitrary_urls(self):
         """
