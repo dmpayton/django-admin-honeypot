@@ -3,6 +3,7 @@ from django.conf import settings
 from django.core import mail
 from django.core.urlresolvers import reverse
 from django.test import TestCase
+from unittest import skipIf
 
 
 class AdminHoneypotTest(TestCase):
@@ -38,6 +39,7 @@ class AdminHoneypotTest(TestCase):
         self.assertEqual(data['password'], attempt.password)
         self.assertEqual(data['username'], str(attempt))
 
+    @skipIf(not settings.ADMIN_HONEYPOT_EMAIL_ADMINS, "The setting does not send the mail.")
     def test_email_admins(self):
         """
         An email is sent to settings.ADMINS
