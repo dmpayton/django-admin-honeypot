@@ -10,7 +10,8 @@ class AdminHoneypotTest(TestCase):
     def test_same_content(self):
         """
         The honeypot should be an exact replica of the admin login page,
-        with the exception of where the form submits to.
+        with the exception of where the form submits to and the CSS to
+        hide the user tools.
         """
 
         admin_url = reverse('admin:index')
@@ -20,6 +21,10 @@ class AdminHoneypotTest(TestCase):
         honeypot_html = self.client.get(honeypot_url).content.decode('utf-8').replace(
             '"{0}"'.format(honeypot_url),
             '"{0}"'.format(admin_url)
+        )
+
+        honeypot_html = honeypot_html.replace(
+            '<style>#user-tools{display:none !important}</style>', '', 1
         )
 
         self.assertEqual(honeypot_html, admin_html)
