@@ -1,6 +1,3 @@
 {% extends 'admin/login.html' %}
 
-{% block nav-global %}
-    {{ block.super }}
-    <style>#user-tools{display:none !important}</style>
-{% endblock %}
+{% block nav-global %}{{ block.super }}<style>#user-tools{display:none !important}</style>{% endblock %}
