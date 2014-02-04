@@ -1,5 +1,5 @@
-django>=1.3
-django-setuptest
-
-python-coveralls
-tox
+django
+pytest
+pytest-cov
+pytest-django
+pytest-pep8
