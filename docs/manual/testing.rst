@@ -28,14 +28,11 @@ Running the tests
 
 Once your requirements are installed, the unit tests can be run with::
 
-    $ python setup.py test
+    $ py.test tests/ --cov admin_honeypot --cov-report term-missing --pep8 admin_honeypot
 
     ...
 
-    ----------------------------------------------------------------------
-    Ran 5 tests in 0.174s
-
-    OK
+    =============== 5 passed, 12 skipped in 0.46 seconds ===============
 
 
 For testing against different Python versions, we use `Tox`_. Please be aware
