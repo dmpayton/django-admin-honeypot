@@ -28,6 +28,6 @@ matrix:
         - python: "3.3"
           env: DJANGO=1.4.10
 
-script: py.test tests/ --cov admin_honeypot --cov-report term-missing --pep8 admin_honeypot
+script: py.test tests/ --cov admin_honeypot --cov-config .coveragerc --cov-report term-missing --pep8 admin_honeypot
 
 after_success: coveralls

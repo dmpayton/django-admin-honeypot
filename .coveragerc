@@ -1,0 +1,2 @@
+[run]
+omit = admin_honeypot/migrations/*
