@@ -23,10 +23,6 @@ class AdminHoneypotTest(TestCase):
             '"{0}"'.format(admin_url)
         )
 
-        honeypot_html = honeypot_html.replace(
-            '<style>#user-tools{display:none !important}</style>', '', 1
-        )
-
         self.assertEqual(honeypot_html, admin_html)
 
     def test_create_login_attempt(self):
