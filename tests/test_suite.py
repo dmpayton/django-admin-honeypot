@@ -10,7 +10,8 @@ class AdminHoneypotTest(TestCase):
     def test_same_content(self):
         """
         The honeypot should be an exact replica of the admin login page,
-        with the exception of where the form submits to.
+        with the exception of where the form submits to and the CSS to
+        hide the user tools.
         """
 
         admin_url = reverse('admin:index')
