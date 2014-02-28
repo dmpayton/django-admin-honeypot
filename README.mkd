@@ -2,7 +2,7 @@
 
 [![Build Status](https://secure.travis-ci.org/dmpayton/django-admin-honeypot.png?branch=develop)](http://travis-ci.org/dmpayton/django-admin-honeypot)
 [![Coverage Status](https://coveralls.io/repos/dmpayton/django-admin-honeypot/badge.png?branch=develop)](https://coveralls.io/r/dmpayton/django-admin-honeypot?branch=develop)
-[![Downloads](https://pypip.in/d/django-admin-honeypot/badge.png)](https://crate.io/packages/django-admin-honeypot/)
+[![Downloads](https://pypip.in/d/django-admin-honeypot/badge.png)](https://pypi.python.org/pypi/django-admin-honeypot)
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/dmpayton/django-admin-honeypot/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
 django-admin-honeypot is a fake Django admin login screen to log and notify
