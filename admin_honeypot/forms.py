@@ -1,6 +1,10 @@
 import django
 from django import forms
-from django.contrib.admin.forms import AdminAuthenticationForm, ERROR_MESSAGE
+from django.contrib.admin.forms import AdminAuthenticationForm
+try:
+    from django.contrib.admin.forms import ERROR_MESSAGE
+except ImportError:
+    ERROR_MESSAGE = AdminAuthenticationForm.error_messages['invalid_login']
 
 
 class HoneypotLoginForm(AdminAuthenticationForm):
