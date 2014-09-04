@@ -9,7 +9,7 @@ class LoginAttempt(models.Model):
     session_key = models.CharField(_("session key"), max_length=50, blank=True, null=True)
     user_agent = models.TextField(_("user-agent"), blank=True, null=True)
     timestamp = models.DateTimeField(_("timestamp"), auto_now_add=True)
-    path = models.CharField(_("path"), max_length=255, blank=True, null=True)
+    path = models.TextField(_("path"), blank=True, null=True)
 
     class Meta:
         verbose_name = _("login attempt")

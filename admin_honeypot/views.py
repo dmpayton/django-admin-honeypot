@@ -16,6 +16,8 @@ class AdminHoneypot(generic.FormView):
     def dispatch(self, request, *args, **kwargs):
         if not request.path.endswith('/'):
             return redirect(request.path + '/', permanent=True)
+        # Django 1.7 redirects the user to an explicit login view with
+        # a next parameter, so emulate that if needed.
         if django.VERSION >= (1, 7):
             login_url = reverse('admin_honeypot:login')
             if request.path != login_url:
@@ -39,16 +41,12 @@ class AdminHoneypot(generic.FormView):
         return self.form_invalid(form)
 
     def form_invalid(self, form):
-        path = self.request.get_full_path()
-        if len(path) > 255:
-            path = path[:230] + '...(%d chars)' % len(path)
-
         instance = LoginAttempt.objects.create(
             username=self.request.POST.get('username'),
             session_key=self.request.session.session_key,
             ip_address=self.request.META.get('REMOTE_ADDR'),
             user_agent=self.request.META.get('HTTP_USER_AGENT'),
-            path=path,
+            path=self.request.get_full_path(),
         )
         honeypot.send(sender=LoginAttempt, instance=instance, request=self.request)
         return super(AdminHoneypot, self).form_invalid(form)
