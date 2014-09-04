@@ -1,6 +1,8 @@
 *.egg
 *.py[co]
 *.komodoproject
+.cache/
+.coverage
 .coveralls
 .DS_Store
 .tox
