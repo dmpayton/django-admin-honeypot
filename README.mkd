@@ -9,7 +9,7 @@ admins of attempted unauthorized access. This app was inspired by discussion
 in and around Paul McMillan's security talk at DjangoCon 2011.
 
 * **Author**: [Derek Payton](http://dmpayton.com)
-* **Version**: 0.3.0
+* **Version**: 0.4.0
 * **License**: MIT
 
 ## Documentation
@@ -24,6 +24,8 @@ pip install django-admin-honeypot
 
 * Add `admin_honeypot` to `INSTALLED_APPS`
 * Update your urls.py:
+
+    *New in v0.4: The namespace argument is now required*
 
     ```
     urlpatterns = patterns(''
