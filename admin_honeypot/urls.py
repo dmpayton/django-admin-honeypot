@@ -9,7 +9,7 @@ except ImportError:  # django < 1.4
 
 urlpatterns = patterns('')
 
-# Add /admin/login/ for Django 1.7+
+# Add /admin/login/ as a separate named view in Django 1.7+
 if django.VERSION >= (1, 7):
     urlpatterns += patterns('',
         url(r'^login/$', views.AdminHoneypot.as_view(), name='login'),

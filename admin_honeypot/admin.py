@@ -7,8 +7,8 @@ from admin_honeypot.models import LoginAttempt
 class LoginAttemptAdmin(admin.ModelAdmin):
     list_display = ('username', 'get_ip_address', 'get_session_key', 'timestamp', 'get_path')
     list_filter = ('timestamp',)
-    readonly_fields = ('path', 'username', 'password', 'ip_address', 'session_key', 'user_agent')
-    search_fields = ('username', 'password', 'ip_address', 'user_agent', 'path')
+    readonly_fields = ('path', 'username', 'ip_address', 'session_key', 'user_agent')
+    search_fields = ('username', 'ip_address', 'user_agent', 'path')
 
     def get_actions(self, request):
         actions = super(LoginAttemptAdmin, self).get_actions(request)

@@ -45,7 +45,6 @@ class AdminHoneypot(generic.FormView):
 
         instance = LoginAttempt.objects.create(
             username=self.request.POST.get('username'),
-            password=self.request.POST.get('password'),
             session_key=self.request.session.session_key,
             ip_address=self.request.META.get('REMOTE_ADDR'),
             user_agent=self.request.META.get('HTTP_USER_AGENT'),

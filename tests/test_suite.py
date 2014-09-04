@@ -48,7 +48,6 @@ class AdminHoneypotTest(TestCase):
         self.client.post(self.honeypot_url, data)
         attempt = LoginAttempt.objects.latest('pk')
         self.assertEqual(data['username'], attempt.username)
-        self.assertEqual(data['password'], attempt.password)
         self.assertEqual(data['username'], str(attempt))
 
     def test_email_admins(self):
@@ -98,4 +97,3 @@ class AdminHoneypotTest(TestCase):
             attempt = LoginAttempt.objects.latest('pk')
             self.assertEqual(base_url + url, attempt.path)
             self.assertEqual(data['username'], attempt.username)
-            self.assertEqual(data['password'], attempt.password)
