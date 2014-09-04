@@ -1,43 +1,31 @@
-# encoding: utf-8
-import datetime
-from south.db import db
-from south.v2 import SchemaMigration
-from django.db import models
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 
-class Migration(SchemaMigration):
-
-    def forwards(self, orm):
-        
-        # Adding model 'LoginAttempt'
-        db.create_table('admin_honeypot_loginattempt', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('username', self.gf('django.db.models.fields.CharField')(max_length=255, null=True, blank=True)),
-            ('password', self.gf('django.db.models.fields.CharField')(max_length=255, null=True, blank=True)),
-            ('ip_address', self.gf('django.db.models.fields.IPAddressField')(max_length=15, null=True, blank=True)),
-            ('session_key', self.gf('django.db.models.fields.CharField')(max_length=50, null=True, blank=True)),
-            ('user_agent', self.gf('django.db.models.fields.TextField')(null=True, blank=True)),
-            ('timestamp', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
-        ))
-        db.send_create_signal('admin_honeypot', ['LoginAttempt'])
+from django.db import models, migrations
 
 
-    def backwards(self, orm):
-        
-        # Deleting model 'LoginAttempt'
-        db.delete_table('admin_honeypot_loginattempt')
+class Migration(migrations.Migration):
 
+    dependencies = [
+    ]
 
-    models = {
-        'admin_honeypot.loginattempt': {
-            'Meta': {'ordering': "('timestamp',)", 'object_name': 'LoginAttempt'},
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'ip_address': ('django.db.models.fields.IPAddressField', [], {'max_length': '15', 'null': 'True', 'blank': 'True'}),
-            'password': ('django.db.models.fields.CharField', [], {'max_length': '255', 'null': 'True', 'blank': 'True'}),
-            'session_key': ('django.db.models.fields.CharField', [], {'max_length': '50', 'null': 'True', 'blank': 'True'}),
-            'timestamp': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
-            'user_agent': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
-            'username': ('django.db.models.fields.CharField', [], {'max_length': '255', 'null': 'True', 'blank': 'True'})
-        }
-    }
-
-    complete_apps = ['admin_honeypot']
+    operations = [
+        migrations.CreateModel(
+            name='LoginAttempt',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('username', models.CharField(max_length=255, null=True, verbose_name='username', blank=True)),
+                ('ip_address', models.IPAddressField(null=True, verbose_name='ip address', blank=True)),
+                ('session_key', models.CharField(max_length=50, null=True, verbose_name='session key', blank=True)),
+                ('user_agent', models.TextField(null=True, verbose_name='user-agent', blank=True)),
+                ('timestamp', models.DateTimeField(auto_now_add=True, verbose_name='timestamp')),
+                ('path', models.TextField(null=True, verbose_name='path', blank=True)),
+            ],
+            options={
+                'ordering': ('timestamp',),
+                'verbose_name': 'login attempt',
+                'verbose_name_plural': 'login attempts',
+            },
+            bases=(models.Model,),
+        ),
+    ]
