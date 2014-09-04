@@ -26,7 +26,7 @@ Basic Usage:
 
     urlpatterns = patterns(''
         ...
-        url(r'^admin/', include('admin_honeypot.urls')),
+        url(r'^admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
         url(r'^secret/', include(admin.site.urls)),
     )
 """
