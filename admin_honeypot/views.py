@@ -1,36 +1,55 @@
+import django
 from admin_honeypot.forms import HoneypotLoginForm
 from admin_honeypot.models import LoginAttempt
 from admin_honeypot.signals import honeypot
 from django.contrib.auth import REDIRECT_FIELD_NAME
-from django.shortcuts import render_to_response, redirect
-from django.template import RequestContext
+from django.core.urlresolvers import reverse
+from django.shortcuts import redirect
 from django.utils.translation import ugettext as _
+from django.views import generic
 
 
-def admin_honeypot(request, extra_context=None):
-    if not request.path.endswith('/'):
-        return redirect(request.path + '/', permanent=True)
-    path = request.get_full_path()
+class AdminHoneypot(generic.FormView):
+    template_name = 'admin_honeypot/login.html'
+    form_class = HoneypotLoginForm
 
-    context = {
-        'app_path': path,
-        'form': HoneypotLoginForm(request, request.POST or None),
-        REDIRECT_FIELD_NAME: path,
-        'title': _('Log in'),
-    }
-    context['form'].is_valid()
-    context.update(extra_context or {})
-    if len(path) > 255:
-        path = path[:230] + '...(%d chars)' % len(path)
-    if request.method == 'POST':
-        failed = LoginAttempt.objects.create(
-            username=request.POST.get('username'),
-            password=request.POST.get('password'),
-            session_key=request.session.session_key,
-            ip_address=request.META.get('REMOTE_ADDR'),
-            user_agent=request.META.get('HTTP_USER_AGENT'),
+    def dispatch(self, request, *args, **kwargs):
+        if not request.path.endswith('/'):
+            return redirect(request.path + '/', permanent=True)
+        if django.VERSION >= (1, 7):
+            login_url = reverse('admin_honeypot:login')
+            if request.path != login_url:
+                return redirect('{0}?next={1}'.format(login_url, request.path))
+        return super(AdminHoneypot, self).dispatch(request, *args, **kwargs)
+
+    def get_form(self, form_class):
+        return form_class(self.request, **self.get_form_kwargs())
+
+    def get_context_data(self, **kwargs):
+        context = super(AdminHoneypot, self).get_context_data(**kwargs)
+        path = self.request.get_full_path()
+        context.update({
+            'app_path': path,
+            REDIRECT_FIELD_NAME: path,
+            'title': _('Log in'),
+        })
+        return context
+
+    def form_valid(self, form):
+        return self.form_invalid(form)
+
+    def form_invalid(self, form):
+        path = self.request.get_full_path()
+        if len(path) > 255:
+            path = path[:230] + '...(%d chars)' % len(path)
+
+        instance = LoginAttempt.objects.create(
+            username=self.request.POST.get('username'),
+            password=self.request.POST.get('password'),
+            session_key=self.request.session.session_key,
+            ip_address=self.request.META.get('REMOTE_ADDR'),
+            user_agent=self.request.META.get('HTTP_USER_AGENT'),
             path=path,
         )
-        honeypot.send(sender=LoginAttempt, instance=failed, request=request)
-    return render_to_response('admin_honeypot/login.html', context,
-        context_instance=RequestContext(request))
+        honeypot.send(sender=LoginAttempt, instance=instance, request=self.request)
+        return super(AdminHoneypot, self).form_invalid(form)
