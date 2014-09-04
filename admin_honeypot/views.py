@@ -21,7 +21,8 @@ class AdminHoneypot(generic.FormView):
         if django.VERSION >= (1, 7):
             login_url = reverse('admin_honeypot:login')
             if request.path != login_url:
-                return redirect('{0}?next={1}'.format(login_url, request.path))
+                from django.contrib.auth.views import redirect_to_login
+                return redirect_to_login(request.get_full_path(), login_url)
         return super(AdminHoneypot, self).dispatch(request, *args, **kwargs)
 
     def get_form(self, form_class):
