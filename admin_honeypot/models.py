@@ -2,10 +2,16 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from admin_honeypot import listeners
 
+try:
+    from django.db.models import GenericIPAddressField
+except ImportError:
+    raise ImportError('Could not import GenericIPAddressField. admin_honeypot '
+                      'requires Django>=1.4 to be working.')
+
 
 class LoginAttempt(models.Model):
     username = models.CharField(_("username"), max_length=255, blank=True, null=True)
-    ip_address = models.IPAddressField(_("ip address"), blank=True, null=True)
+    ip_address = models.GenericIPAddressField(_("ip address"), blank=True, null=True)
     session_key = models.CharField(_("session key"), max_length=50, blank=True, null=True)
     user_agent = models.TextField(_("user-agent"), blank=True, null=True)
     timestamp = models.DateTimeField(_("timestamp"), auto_now_add=True)
