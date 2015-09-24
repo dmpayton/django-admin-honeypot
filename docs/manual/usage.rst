@@ -22,6 +22,8 @@ Basic setup
         ...
     )
 
+3. Run ``python manage.py syncdb`` or south ``python manage.py migrate``
+
 The ``honeypot`` signal
 =======================
 
