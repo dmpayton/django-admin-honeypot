@@ -1,0 +1,90 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-12-06 12:05+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: admin.py:21
+msgid "Session"
+msgstr "会话"
+
+#: admin.py:26 templates/admin_honeypot/email_message.txt:4
+msgid "IP Address"
+msgstr "IP地址"
+
+#: admin.py:31
+msgid "URL"
+msgstr "网址"
+
+#: models.py:7
+msgid "username"
+msgstr "用户名"
+
+#: models.py:8
+msgid "ip address"
+msgstr "IP地址"
+
+#: models.py:9
+msgid "session key"
+msgstr "会话键"
+
+#: models.py:10
+msgid "user-agent"
+msgstr "用户代理"
+
+#: models.py:11
+msgid "timestamp"
+msgstr "时间戳"
+
+#: models.py:12
+msgid "path"
+msgstr "路径"
+
+#: models.py:15
+msgid "login attempt"
+msgstr "登录尝试"
+
+#: models.py:16
+msgid "login attempts"
+msgstr "登录尝试列表"
+
+#: templates/admin_honeypot/email_message.txt:1
+#, python-format
+msgid ""
+"This is an automatic email to notify you that someone tried to login to the "
+"admin honeypot on %(host)s"
+msgstr "这是一个自动邮件，通知你有人尝试登录在%(host)s上的管理蜜罐。"
+
+#: templates/admin_honeypot/email_message.txt:3
+msgid "Username"
+msgstr "用户名"
+
+#: templates/admin_honeypot/email_message.txt:5
+msgid "Timestamp"
+msgstr "时间戳"
+
+#: templates/admin_honeypot/email_subject.txt:1
+#, python-format
+msgid "[admin-honeypot] attempted login from %(ip)s at %(host)s"
+msgstr "[管理蜜罐]在%(host)s被来自%(ip)s尝试登录。"
+
+#: views.py:37
+msgid "Log in"
+msgstr "登录"
+
+msgid "Admin_Honeypot"
+msgstr "管理蜜罐"
