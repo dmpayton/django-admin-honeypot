@@ -1,17 +1,6 @@
 language: python
 
 env:
-  - TOXENV=django13_py26
-  - TOXENV=django13_py27
-
-  - TOXENV=django14_py26
-  - TOXENV=django14_py27
-
-  - TOXENV=django15_py26
-  - TOXENV=django15_py27
-  - TOXENV=django15_py33
-  - TOXENV=django15_py34
-
   - TOXENV=django16_py26
   - TOXENV=django16_py27
   - TOXENV=django16_py33
