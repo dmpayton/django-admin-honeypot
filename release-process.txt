@@ -1,5 +1,5 @@
 1. Update version info
- * README.mkd
+ * README.rst
  * admin_honeypot/__init__.py
  * docs/conf.py
  * docs/index.rst
