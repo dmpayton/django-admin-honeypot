@@ -6,20 +6,30 @@ from django.core import mail
 from django.core.urlresolvers import reverse
 from django.test import TestCase
 
+try:
+    # Python 2.7
+    from urllib import quote_plus
+except ImportError:
+    # Python 3+
+    from urllib.parse import quote_plus
 
 class AdminHoneypotTest(TestCase):
     maxDiff = None
 
     @property
+    def admin_login_url(self):
+        return reverse('admin:login')
+
+    @property
     def admin_url(self):
-        if django.VERSION >= (1, 7):
-            return reverse('admin:login')
         return reverse('admin:index')
 
     @property
+    def honeypot_login_url(self):
+        return reverse('admin_honeypot:login')
+
+    @property
     def honeypot_url(self):
-        if django.VERSION >= (1, 7):
-            return reverse('admin_honeypot:login')
         return reverse('admin_honeypot:index')
 
     def test_same_content(self):
@@ -30,9 +40,15 @@ class AdminHoneypotTest(TestCase):
         """
 
         admin_html = self.client.get(self.admin_url, follow=True).content.decode('utf-8')
-        honeypot_html = self.client.get(self.honeypot_url, follow=True).content.decode('utf-8').replace(
-            '"{0}"'.format(self.honeypot_url),
-            '"{0}"'.format(self.admin_url)
+        honeypot_html = (self.client.get(self.honeypot_url, follow=True).content.decode('utf-8')
+            # /admin/login/ -> /secret/login/
+            .replace(self.honeypot_login_url, self.admin_login_url)
+
+            # "/admin/" -> "/secret/"
+            .replace('"{0}"'.format(self.honeypot_url), '"{0}"'.format(self.admin_url))
+
+            # %2fadmin%2f -> %2fsecret%2f
+            .replace(quote_plus(self.honeypot_url), quote_plus(self.admin_url))
         )
 
         self.assertEqual(honeypot_html, admin_html)
@@ -45,7 +61,7 @@ class AdminHoneypotTest(TestCase):
             'username': 'admin',
             'password': 'letmein'
         }
-        self.client.post(self.honeypot_url, data)
+        self.client.post(self.honeypot_login_url, data)
         attempt = LoginAttempt.objects.latest('pk')
         self.assertEqual(data['username'], attempt.username)
         self.assertEqual(data['username'], str(attempt))
@@ -54,7 +70,7 @@ class AdminHoneypotTest(TestCase):
         """
         An email is sent to settings.ADMINS
         """
-        self.client.post(self.honeypot_url, {
+        self.client.post(self.honeypot_login_url, {
             'username': 'admin',
             'password': 'letmein'
         })
@@ -66,34 +82,8 @@ class AdminHoneypotTest(TestCase):
         """
         /admin redirects to /admin/ permanent redirect.
         """
-        redirect_url = url = reverse('admin_honeypot:index') + 'foo/'
-
-        # Django 1.7 will redirect the user, but the ?next param will
-        # have the trailing slash.
-        if django.VERSION >= (1, 7):
-            redirect_url = reverse('admin_honeypot:login') + '?next=' + url
+        url = self.honeypot_url + 'foo/'
+        redirect_url = self.honeypot_login_url + '?next=' + url
 
         response = self.client.get(url.rstrip('/'), follow=True)
         self.assertRedirects(response, redirect_url, status_code=301)
-
-    @pytest.mark.skipif(django.VERSION >= (1, 7), reason="POST requests won't work with Django 1.7's admin redirect strategy")
-    def test_arbitrary_urls(self):
-        """
-        The Django admin displays a login screen for everything under /admin/
-        """
-        data = {
-            'username': 'admin',
-            'password': 'letmein',
-        }
-        url_list = (
-            'auth/',
-            'comments/moderate/',
-            'flatpages/flatpage/?ot=desc&o=1'
-            'auth/user/1/',
-        )
-        base_url = self.honeypot_url
-        for url in url_list:
-            self.client.post(base_url + url, data)
-            attempt = LoginAttempt.objects.latest('pk')
-            self.assertEqual(base_url + url, attempt.path)
-            self.assertEqual(data['username'], attempt.username)
