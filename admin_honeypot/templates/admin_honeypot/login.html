@@ -1,2 +1,8 @@
 {% extends 'admin/login.html' %}
+{% block content %}
+    {% if debug %}
+        <p class="errornote alert alert-notice">Django Admin Honeypot enabled. <a href='{% url 'admin:index' %}'>Click here</a> to log into the actual admin.</p>
+    {% endif %}
+    {{block.super}}
+{% endblock %}
 {% block nav-global %}{{ block.super }}{% if user.is_active and user.is_staff %}<style>#user-tools{display:none !important}</style>{% endif %}{% endblock %}
