@@ -1,25 +1,14 @@
 language: python
 
 env:
-  - TOXENV=django13_py26
-  - TOXENV=django13_py27
+  - TOXENV=django18_py27
+  - TOXENV=django18_py33
+  - TOXENV=django18_py34
+  - TOXENV=django18_py35
 
-  - TOXENV=django14_py26
-  - TOXENV=django14_py27
-
-  - TOXENV=django15_py26
-  - TOXENV=django15_py27
-  - TOXENV=django15_py33
-  - TOXENV=django15_py34
-
-  - TOXENV=django16_py26
-  - TOXENV=django16_py27
-  - TOXENV=django16_py33
-  - TOXENV=django16_py34
-
-  - TOXENV=django17_py27
-  - TOXENV=django17_py33
-  - TOXENV=django17_py34
+  - TOXENV=django19_py27
+  - TOXENV=django19_py34
+  - TOXENV=django19_py35
 
   - TOXENV=coverage
 
