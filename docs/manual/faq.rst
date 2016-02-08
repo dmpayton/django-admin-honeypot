@@ -15,9 +15,8 @@ Why is the IP address logged as 127.0.0.1?
 
 Django-admin-honeypot pulls the users IP address from the ``REMOTE_ADDR``
 request header. If your Django app is behind a load balancer or proxy web
-server, this may not be set and instead you will instead have an
-``HTTP_X_FORWARDED_FOR`` header which contains the IP address in a
-comma-separated string.
+server, this may not be set and instead you will have an ``HTTP_X_FORWARDED_FOR``
+header which contains the IP address in a comma-separated string.
 
 The simple solution is to use a middleware to automatically set ``REMOTE_ADDR``
 to the value of ``HTTP_X_FORWARDED_FOR``, like so:
