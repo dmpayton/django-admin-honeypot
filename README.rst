@@ -2,16 +2,18 @@
 django-admin-honeypot
 =====================
 
-|travis-ci|_ |coverage-io|_ |downloads|_
+.. image:: https://travis-ci.org/dmpayton/django-admin-honeypot.svg?branch=develop
+   :target: https://travis-ci.org/dmpayton/django-admin-honeypot
+   :alt: Travis-CI
 
-.. |travis-ci| image:: https://secure.travis-ci.org/dmpayton/django-admin-honeypot.png?branch=develop
-.. _travis-ci: https://travis-ci.org/dmpayton/django-admin-honeypot
+.. image:: https://coveralls.io/repos/dmpayton/django-admin-honeypot/badge.svg?branch=develop
+   :target: https://coveralls.io/r/dmpayton/django-admin-honeypot
+   :alt: Coverage
 
-.. |coverage-io| image:: https://coveralls.io/repos/dmpayton/django-admin-honeypot/badge.png?branch=develop
-.. _coverage-io: https://coveralls.io/r/dmpayton/django-admin-honeypot
+.. image:: https://codeclimate.com/github/dmpayton/django-admin-honeypot/badges/gpa.svg?branch=develop
+   :target: https://codeclimate.com/github/dmpayton/django-admin-honeypot
+   :alt: Code Climate
 
-.. |downloads| image:: https://pypip.in/d/django-admin-honeypot/badge.png
-.. _downloads: https://pypi.python.org/pypi/django-admin-honeypot
 
 **django-admin-honeypot** is a fake Django admin login screen to log and notify
 admins of attempted unauthorized access. This app was inspired by discussion
@@ -35,8 +37,6 @@ tl;dr
 
 * Add ``admin_honeypot`` to ``INSTALLED_APPS``
 * Update your urls.py:
-
-    *New in v0.4: The* ``namespace`` *argument is now required.*
 
     ::
 
