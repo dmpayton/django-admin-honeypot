@@ -26,7 +26,7 @@ class AdminHoneypot(generic.FormView):
 
         return super(AdminHoneypot, self).dispatch(request, *args, **kwargs)
 
-    def get_form(self, form_class):
+    def get_form(self, form_class=form_class):
         return form_class(self.request, **self.get_form_kwargs())
 
     def get_context_data(self, **kwargs):
