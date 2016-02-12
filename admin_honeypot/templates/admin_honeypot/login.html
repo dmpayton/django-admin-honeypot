@@ -1,2 +1,5 @@
 {% extends 'admin/login.html' %}
-{% block nav-global %}{{ block.super }}{% if user.is_active and user.is_staff %}<style>#user-tools{display:none !important}</style>{% endif %}{% endblock %}
+
+{% block branding %}
+<h1 id="site-name"><a href="{% url 'admin_honeypot:index' %}">{{ site_header|default:_('Django administration') }}</a></h1>
+{% endblock %}
