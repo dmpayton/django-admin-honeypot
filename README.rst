@@ -46,4 +46,4 @@ tl;dr
             url(r'^secret/', include(admin.site.urls)),
         )
 
-* Run ``python manage.py syncdb`` or with south ``python manage.py migrate``
+* Run ``python manage.py migrate``

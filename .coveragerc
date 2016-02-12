@@ -1,4 +1,3 @@
 [run]
 omit =
     admin_honeypot/migrations/*
-    admin_honeypot/south_migrations/*
