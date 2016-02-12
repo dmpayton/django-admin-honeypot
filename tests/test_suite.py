@@ -87,3 +87,13 @@ class AdminHoneypotTest(TestCase):
 
         response = self.client.get(url.rstrip('/'), follow=True)
         self.assertRedirects(response, redirect_url, status_code=301)
+
+    def test_real_url_leak(self):
+        """
+        A test to make sure the real admin URL isn't leaked in the honeypot
+        login form page.
+        """
+
+        honeypot_html = self.client.get(self.honeypot_url, follow=True).content.decode('utf-8')
+        self.assertNotIn('{0}'.format(self.admin_url), honeypot_html)
+        self.assertNotIn('{0}'.format(self.admin_login_url), honeypot_html)
