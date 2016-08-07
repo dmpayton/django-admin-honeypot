@@ -26,7 +26,7 @@ in and around Paul McMillan's security talk at DjangoCon 2011.
 Documentation
 =============
 
-http://django-admin-honeypot.readthedocs.org
+http://django-admin-honeypot.readthedocs.io
 
 tl;dr
 -----
