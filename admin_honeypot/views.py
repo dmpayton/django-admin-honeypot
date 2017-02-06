@@ -8,6 +8,7 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import redirect
 from django.utils.translation import ugettext as _
 from django.views import generic
+from django.conf import settings
 
 
 class AdminHoneypot(generic.FormView):
@@ -46,7 +47,8 @@ class AdminHoneypot(generic.FormView):
         instance = LoginAttempt.objects.create(
             username=self.request.POST.get('username'),
             session_key=self.request.session.session_key,
-            ip_address=self.request.META.get('REMOTE_ADDR'),
+            ip_address=self.request.META.get(
+                getattr(settings, 'ADMIN_HONEYPOT_IP_HEADER', 'REMOTE_ADDR')),
             user_agent=self.request.META.get('HTTP_USER_AGENT'),
             path=self.request.get_full_path(),
         )
