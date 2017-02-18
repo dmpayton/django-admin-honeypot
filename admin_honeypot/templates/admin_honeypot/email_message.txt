@@ -3,6 +3,7 @@
 {% trans "Username" %}: {{ instance.username }}
 {% trans "IP Address" %}: {{ instance.ip_address }}
 {% trans "Timestamp" %}: {{ instance.timestamp }}
+{% trans "Record by Address" %} {{ instance.record_by_address }}
 
 {{ admin_detail_url }}
 

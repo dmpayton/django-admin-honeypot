@@ -27,7 +27,7 @@ setup(
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
         'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
-        ],
+    ],
     keywords='django admin honeypot trap',
     maintainer='Derek Payton',
     maintainer_email='derek.payton@gmail.com',
@@ -37,4 +37,5 @@ setup(
     include_package_data=True,
     packages=find_packages(),
     zip_safe=False,
-    )
+    install_requires=["pygeoip", "ipaddress"]
+)
