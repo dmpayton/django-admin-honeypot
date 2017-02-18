@@ -5,11 +5,9 @@ from admin_honeypot.models import LoginAttempt
 
 
 class LoginAttemptAdmin(admin.ModelAdmin):
-    list_display = ('username', 'get_ip_address', 'get_session_key',
-                    'timestamp', 'get_path', 'get_country_name')
+    list_display = ('username', 'get_ip_address', 'get_session_key', 'timestamp', 'get_path', 'get_country_name')
     list_filter = ('timestamp',)
-    readonly_fields = ('path', 'username', 'ip_address', 'session_key',
-                       'user_agent', 'record_by_address')
+    readonly_fields = ('path', 'username', 'ip_address', 'session_key', 'user_agent', 'record_by_address')
     search_fields = ('username', 'ip_address', 'user_agent', 'path')
 
     def get_actions(self, request):

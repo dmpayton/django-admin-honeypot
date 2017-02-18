@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-18 22:09+0700\n"
+"POT-Creation-Date: 2017-02-18 22:19+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Last-Translator: Agus Makmun <agus@python.web.id>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -18,20 +18,20 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: admin_honeypot/admin.py:23
+#: admin_honeypot/admin.py:21
 msgid "Session"
 msgstr "Sesi"
 
-#: admin_honeypot/admin.py:28
+#: admin_honeypot/admin.py:26
 #: admin_honeypot/templates/admin_honeypot/email_message.txt:4
 msgid "IP Address"
 msgstr "Alamat IP"
 
-#: admin_honeypot/admin.py:33
+#: admin_honeypot/admin.py:31
 msgid "URL"
 msgstr ""
 
-#: admin_honeypot/admin.py:38
+#: admin_honeypot/admin.py:36
 msgid "Country Name"
 msgstr "Nama Negara"
 
