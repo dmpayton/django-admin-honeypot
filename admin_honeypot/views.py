@@ -13,7 +13,7 @@ from django.views import generic
 from django.conf import settings
 
 
-ALLOW_TRACK_ADDRESS = getattr(settings, 'ADMIN_HONEYPOT_ALLOW_TRACK_ADDRESS', True)
+ALLOW_TRACK_ADDRESS = getattr(settings, 'ADMIN_HONEYPOT_ALLOW_TRACK_ADDRESS', False)
 PATH_GEOIPV4_CITY = getattr(settings, 'ADMIN_HONEYPOT_PATH_GEOIPV4_CITY', None)
 PATH_GEOIPV6_CITY = getattr(settings, 'ADMIN_HONEYPOT_PATH_GEOIPV6_CITY', None)
 

@@ -24,10 +24,10 @@ Sent on every login attempt with the following arguments:
 
 **ADMIN_HONEYPOT_ALLOW_TRACK_ADDRESS**
 
-Default: ``True``
+Default: ``False``
 
 Used to allow track detail address from client.
-Set to ``False`` to disable tracker.
+Set to ``True`` to enable tracker.
 
 **ADMIN_HONEYPOT_PATH_GEOIPV4_CITY**
 
