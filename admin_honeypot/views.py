@@ -56,7 +56,7 @@ class AdminHoneypot(generic.FormView):
         return None, if `ALLOW_TRACK_ADDRESS = False` or invalid ipaddress.
         related issue: https://github.com/dmpayton/django-admin-honeypot/issues/41
         """
-        if not ALLOW_TRACK_ADDRESS:
+        if ALLOW_TRACK_ADDRESS == False:
             return None
 
         try:
