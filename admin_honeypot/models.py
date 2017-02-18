@@ -5,20 +5,13 @@ from admin_honeypot import listeners
 
 
 class LoginAttempt(models.Model):
-    username = models.CharField(
-        _("username"), max_length=255, blank=True, null=True)
-    ip_address = models.GenericIPAddressField(
-        _("ip address"), protocol='both', blank=True, null=True)
-    session_key = models.CharField(
-        _("session key"), max_length=50, blank=True, null=True)
-    user_agent = models.TextField(
-        _("user-agent"), blank=True, null=True)
-    timestamp = models.DateTimeField(
-        _("timestamp"), auto_now_add=True)
-    path = models.TextField(
-        _("path"), blank=True, null=True)
-    record_by_address = models.TextField(
-        _("record by address"), blank=True, null=True)
+    username = models.CharField(_("username"), max_length=255, blank=True, null=True)
+    ip_address = models.GenericIPAddressField(_("ip address"), protocol='both', blank=True, null=True)
+    session_key = models.CharField(_("session key"), max_length=50, blank=True, null=True)
+    user_agent = models.TextField(_("user-agent"), blank=True, null=True)
+    timestamp = models.DateTimeField(_("timestamp"), auto_now_add=True)
+    path = models.TextField(_("path"), blank=True, null=True)
+    record_by_address = models.TextField(_("record by address"), blank=True, null=True)
 
     class Meta:
         verbose_name = _("login attempt")
