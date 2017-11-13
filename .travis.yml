@@ -31,6 +31,9 @@ matrix:
 
     - env: TOXENV=coverage
 
+  allow_failures:
+    - env: TOXENV=django18-py32
+
 install:
   - pip install tox
 
