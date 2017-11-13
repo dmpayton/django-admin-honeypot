@@ -1,3 +1,5 @@
+import re
+
 import django
 import pytest
 from admin_honeypot.models import LoginAttempt
@@ -50,6 +52,11 @@ class AdminHoneypotTest(TestCase):
             # %2fadmin%2f -> %2fsecret%2f
             .replace(quote_plus(self.honeypot_url), quote_plus(self.admin_url))
         )
+
+        # Drop CSRF token
+        csrf_re = re.compile(r"(<input [^/>]+ value=')[a-zA-Z0-9]+'")
+        admin_html = csrf_re.sub(r"\1'", admin_html)
+        honeypot_html = csrf_re.sub(r"\1'", honeypot_html)
 
         self.assertEqual(honeypot_html, admin_html)
 
