@@ -1,10 +1,10 @@
 import django
+from admin_honeypot.compat import reverse
 from admin_honeypot.forms import HoneypotLoginForm
 from admin_honeypot.models import LoginAttempt
 from admin_honeypot.signals import honeypot
 from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.contrib.auth.views import redirect_to_login
-from django.core.urlresolvers import reverse
 from django.shortcuts import redirect
 from django.utils.translation import ugettext as _
 from django.views import generic

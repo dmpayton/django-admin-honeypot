@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-from admin_honeypot import listeners
+from admin_honeypot import listeners  # noqa
 
 
 class LoginAttempt(models.Model):

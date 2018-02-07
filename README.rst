@@ -39,11 +39,18 @@ tl;dr
 * Update your urls.py:
 
     ::
-
+        # If django version is lower than 2.0
         urlpatterns = patterns(''
             ...
             url(r'^admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
             url(r'^secret/', include(admin.site.urls)),
         )
+
+        # Otherwise
+        from django.urls import path
+        urlpatterns = [
+            path('admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
+            path('secret/', admin.site.urls),
+        ]
 
 * Run ``python manage.py migrate``
