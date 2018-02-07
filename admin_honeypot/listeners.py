@@ -1,7 +1,8 @@
+from admin_honeypot.compat import reverse
 from admin_honeypot.signals import honeypot
+
 from django.conf import settings
 from django.core.mail import mail_admins
-from django.core.urlresolvers import reverse
 from django.template.loader import render_to_string
 
 
@@ -16,6 +17,7 @@ def notify_admins(instance, request, **kwargs):
     subject = render_to_string('admin_honeypot/email_subject.txt', context).strip()
     message = render_to_string('admin_honeypot/email_message.txt', context).strip()
     mail_admins(subject=subject, message=message)
+
 
 if getattr(settings, 'ADMIN_HONEYPOT_EMAIL_ADMINS', True):
     honeypot.connect(notify_admins)

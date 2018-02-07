@@ -15,6 +15,10 @@ setup(
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Framework :: Django',
+        'Framework :: Django :: 1.8',
+        'Framework :: Django :: 1.10',
+        'Framework :: Django :: 1.11',
+        'Framework :: Django :: 2.0',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
         'Natural Language :: English',
@@ -26,8 +30,9 @@ setup(
         'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
         'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
-        ],
+    ],
     keywords='django admin honeypot trap',
     maintainer='Derek Payton',
     maintainer_email='derek.payton@gmail.com',
@@ -37,4 +42,4 @@ setup(
     include_package_data=True,
     packages=find_packages(),
     zip_safe=False,
-    )
+)

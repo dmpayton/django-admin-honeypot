@@ -1,17 +1,13 @@
-import django
-import pytest
+import re
+from admin_honeypot.compat import reverse, quote_plus
 from admin_honeypot.models import LoginAttempt
 from django.conf import settings
 from django.core import mail
-from django.core.urlresolvers import reverse
 from django.test import TestCase
 
-try:
-    # Python 2.7
-    from urllib import quote_plus
-except ImportError:
-    # Python 3+
-    from urllib.parse import quote_plus
+
+CSRF_TOKEN_REGEX = re.compile(r"(name='csrfmiddlewaretoken' value='\w+')")
+
 
 class AdminHoneypotTest(TestCase):
     maxDiff = None
@@ -35,12 +31,13 @@ class AdminHoneypotTest(TestCase):
     def test_same_content(self):
         """
         The honeypot should be an exact replica of the admin login page,
-        with the exception of where the form submits to and the CSS to
-        hide the user tools.
+        with the exception of where the form submits to, the CSS to
+        hide the user tools and the CSRF token
         """
 
         admin_html = self.client.get(self.admin_url, follow=True).content.decode('utf-8')
-        honeypot_html = (self.client.get(self.honeypot_url, follow=True).content.decode('utf-8')
+        honeypot_html = (
+            self.client.get(self.honeypot_url, follow=True).content.decode('utf-8')
             # /admin/login/ -> /secret/login/
             .replace(self.honeypot_login_url, self.admin_login_url)
 
@@ -50,6 +47,10 @@ class AdminHoneypotTest(TestCase):
             # %2fadmin%2f -> %2fsecret%2f
             .replace(quote_plus(self.honeypot_url), quote_plus(self.admin_url))
         )
+
+        # Remove CSRF token
+        admin_html = CSRF_TOKEN_REGEX.sub('', admin_html)
+        honeypot_html = CSRF_TOKEN_REGEX.sub('', honeypot_html)
 
         self.assertEqual(honeypot_html, admin_html)
 

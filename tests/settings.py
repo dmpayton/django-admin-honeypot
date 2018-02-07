@@ -38,12 +38,18 @@ INSTALLED_APPS = (
     'admin_honeypot',
 )
 
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE = MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
 )
 
+TEMPLATES = [
+    {
+        'APP_DIRS': True,
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+    },
+]
 
 ADMIN_HONEYPOT_EMAIL_ADMINS = True
