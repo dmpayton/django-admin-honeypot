@@ -1,19 +1,47 @@
 language: python
 
-env:
-  - TOXENV=django18_py27
-  - TOXENV=django18_py34
-  - TOXENV=django18_py35
+matrix:
+  include:
+    - env: TOXENV=django18_py27
+      python: '2.7'
+    - env: TOXENV=django18_py34
+      python: '3.3'
+    - env: TOXENV=django18_py34
+      python: '3.4'
+    - env: TOXENV=django18_py35
+      python: '3.5'
 
-  - TOXENV=django19_py27
-  - TOXENV=django19_py34
-  - TOXENV=django19_py35
+    - env: TOXENV=django19_py27
+      python: '2.7'
+    - env: TOXENV=django19_py34
+      python: '3.4'
+    - env: TOXENV=django19_py35
+      python: '3.5'
 
-  - TOXENV=django20_py34
-  - TOXENV=django20_py35
-  - TOXENV=django20_py36
+    - env: TOXENV=django110_py27
+      python: '2.7'
+    - env: TOXENV=django110_py34
+      python: '3.4'
+    - env: TOXENV=django110_py35
+      python: '3.5'
 
-  - TOXENV=coverage
+    - env: TOXENV=django111_py27
+      python: '2.7'
+    - env: TOXENV=django111_py34
+      python: '3.4'
+    - env: TOXENV=django111_py35
+      python: '3.5'
+    - env: TOXENV=django111_py35
+      python: '3.6'
+
+    - env: TOXENV=django20_py27
+      python: '3.4'
+    - env: TOXENV=django20_py34
+      python: '3.5'
+    - env: TOXENV=django20_py35
+      python: '3.6'
+
+    - env: TOXENV=coverage
 
 install:
   - pip install tox
