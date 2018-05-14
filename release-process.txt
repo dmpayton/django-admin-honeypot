@@ -7,5 +7,5 @@
 2. git tag -a vX.Y.Z -m 'Version X.Y.Z'
 
 3. Upload to PyPI:
- * python setup.py sdist upload
- * python setup.py bdist_wheel upload
+ * python setup.py sdist bdist_wheel
+ * twine upload dist/*
