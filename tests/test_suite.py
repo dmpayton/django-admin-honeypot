@@ -5,8 +5,8 @@ import pytest
 from admin_honeypot.models import LoginAttempt
 from django.conf import settings
 from django.core import mail
-from django.core.urlresolvers import reverse
 from django.test import TestCase
+from django.urls import reverse
 
 try:
     # Python 2.7

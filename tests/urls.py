@@ -6,5 +6,5 @@ admin.autodiscover()
 
 urlpatterns = [
     url(r'^admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
-    url(r'^secret/', include(admin.site.urls)),
+    url(r'^secret/', admin.site.urls),
 ]
