@@ -20,7 +20,7 @@ admins of attempted unauthorized access. This app was inspired by discussion
 in and around Paul McMillan's security talk at DjangoCon 2011.
 
 * **Author**: `Derek Payton <http://dmpayton.com/>`_
-* **Version**: 1.0.0
+* **Version**: 1.1.0
 * **License**: MIT
 
 Documentation
