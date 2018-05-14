@@ -47,3 +47,6 @@ tl;dr
         )
 
 * Run ``python manage.py migrate``
+
+NOTE: replace ``secret`` in the url above with your own secret url prefix
+
