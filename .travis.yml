@@ -2,37 +2,15 @@ language: python
 
 matrix:
   include:
-    - env: TOXENV=django18-py27
-      python: '2.7'
-    - env: TOXENV=django18-py32
-      python: '3.2'
-    - env: TOXENV=django18-py33
-      python: '3.3'
-    - env: TOXENV=django18-py34
-      python: '3.4'
-    - env: TOXENV=django18-py35
-      python: '3.5'
-
-    - env: TOXENV=django110-py27
-      python: '2.7'
-    - env: TOXENV=django110-py34
-      python: '3.4'
-    - env: TOXENV=django110-py35
-      python: '3.5'
 
     - env: TOXENV=django111-py27
       python: '2.7'
-    - env: TOXENV=django111-py34
-      python: '3.4'
-    - env: TOXENV=django111-py35
-      python: '3.5'
     - env: TOXENV=django111-py36
+      python: '3.6'
+    - env: TOXENV=django20-py36
       python: '3.6'
 
     - env: TOXENV=coverage
-
-  allow_failures:
-    - env: TOXENV=django18-py32
 
 install:
   - pip install tox
