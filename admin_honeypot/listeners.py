@@ -1,7 +1,7 @@
 from admin_honeypot.signals import honeypot
 from django.conf import settings
 from django.core.mail import mail_admins
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.template.loader import render_to_string
 
 
