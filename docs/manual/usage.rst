@@ -22,6 +22,10 @@ Basic setup
         ...
     )
 
+3. Run migration::
+
+   $ python manage.py migrate
+
 The ``honeypot`` signal
 =======================
 
