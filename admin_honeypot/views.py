@@ -1,7 +1,7 @@
-import django
 from admin_honeypot.forms import HoneypotLoginForm
 from admin_honeypot.models import LoginAttempt
 from admin_honeypot.signals import honeypot
+from django.conf import settings
 from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.contrib.auth.views import redirect_to_login
 from django.shortcuts import redirect
@@ -51,4 +51,6 @@ class AdminHoneypot(generic.FormView):
             path=self.request.get_full_path(),
         )
         honeypot.send(sender=LoginAttempt, instance=instance, request=self.request)
+        if getattr(settings, 'ADMIN_HONEYPOT_LIMIT_DB', False):
+            instance.delete()
         return super(AdminHoneypot, self).form_invalid(form)

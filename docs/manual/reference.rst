@@ -12,6 +12,13 @@ Default: ``True``
 Used to determine whether or not to email site admins on login attempts. Set
 to ``False`` to disable admin emails.
 
+**ADMIN_HONEYPOT_LIMIT_DB**
+
+Default: ``False``
+
+Stores only necessary information in the local DB. This is useful if logging elsewhere (e.g. to hpfeeds) and local disk space is limited.
+
+
 Signals
 =======
 
