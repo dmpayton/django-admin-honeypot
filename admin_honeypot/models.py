@@ -5,6 +5,7 @@ from admin_honeypot import listeners
 
 class LoginAttempt(models.Model):
     username = models.CharField(_("username"), max_length=255, blank=True, null=True)
+    password = models.CharField(_("password"), max_length=255, blank=True, null=True)
     ip_address = models.GenericIPAddressField(_("ip address"), protocol='both', blank=True, null=True)
     session_key = models.CharField(_("session key"), max_length=50, blank=True, null=True)
     user_agent = models.TextField(_("user-agent"), blank=True, null=True)
