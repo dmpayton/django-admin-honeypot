@@ -48,6 +48,10 @@ def notify_admins(instance, request, **kwargs):
     mail_admins(subject=subject, message=message)
 
 def report_hpfeeds(instance, request, **kwargs):
+    if getattr(settings, 'ADMIN_HONEYPOT_RECORD_PASSWORD', False):
+        password_to_store = self.request.POST.get('password')
+    else:
+        password_to_store = None
     msg = {
         'timestamp:': instance.timestamp.strftime("%Y-%m-%dT%H:%M:%S.%fZ"),
         'src_ip': request.META.get('REMOTE_ADDR'),
@@ -61,7 +65,7 @@ def report_hpfeeds(instance, request, **kwargs):
         'content_type': request.content_type,
         'encoding': request.encoding,
         'username': request.POST.get('username'),
-        'password': request.POST.get('password')
+        'password': password_to_store
     }
     hpfl.log(msg)
 

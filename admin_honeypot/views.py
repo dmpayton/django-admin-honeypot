@@ -43,9 +43,13 @@ class AdminHoneypot(generic.FormView):
         return self.form_invalid(form)
 
     def form_invalid(self, form):
+        if getattr(settings, 'ADMIN_HONEYPOT_RECORD_PASSWORD', False):
+            password_to_store = self.request.POST.get('password')
+        else:
+            password_to_store = None
         instance = LoginAttempt.objects.create(
             username=self.request.POST.get('username'),
-            password=self.request.POST.get('password'),
+            password=password_to_store,
             session_key=self.request.session.session_key,
             ip_address=self.request.META.get('REMOTE_ADDR'),
             user_agent=self.request.META.get('HTTP_USER_AGENT'),
