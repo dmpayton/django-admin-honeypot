@@ -21,6 +21,7 @@ class hpflogger:
                 self.status = "Logging to hpfeeds using server: {0}, channel {1}.".format(self.hpfserver, self.hpfchannel)
             except (hpfeeds.FeedException, socket.error, hpfeeds.Disconnect):
                 self.status = "hpfeeds connection not successful"
+
     def log(self, message):
         if self.hpc:
             message['serverid'] = self.serverid
