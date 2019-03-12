@@ -16,7 +16,7 @@ if getattr(settings, 'ADMIN_HONEYPOT_REPORT_HPFEEDS', False):
         'HPFEEDS_SECRET',
         'HPFEEDS_CHANNEL',
         'SERVERID',
-        ]
+    ]
     if all(var in os.environ for var in environreq):
         hpf_server = os.environ.get('HPFEEDS_SERVER', False)
         hpf_port = int(os.environ.get('HPFEEDS_PORT'))
@@ -35,6 +35,7 @@ if getattr(settings, 'ADMIN_HONEYPOT_REPORT_HPFEEDS', False):
     if hpf_server:
         hpfl = hpflogger(hpf_server, hpf_port, hpf_ident, hpf_secret, hpf_channel, hpf_serverid)
 
+
 def notify_admins(instance, request, **kwargs):
     path = reverse('admin:admin_honeypot_loginattempt_change', args=(instance.pk,))
     admin_detail_url = 'http://{0}{1}'.format(request.get_host(), path)
@@ -46,6 +47,7 @@ def notify_admins(instance, request, **kwargs):
     subject = render_to_string('admin_honeypot/email_subject.txt', context).strip()
     message = render_to_string('admin_honeypot/email_message.txt', context).strip()
     mail_admins(subject=subject, message=message)
+
 
 def report_hpfeeds(instance, request, **kwargs):
     if getattr(settings, 'ADMIN_HONEYPOT_RECORD_PASSWORD', False):
