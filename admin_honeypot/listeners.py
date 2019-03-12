@@ -49,7 +49,7 @@ def notify_admins(instance, request, **kwargs):
 
 def report_hpfeeds(instance, request, **kwargs):
     if getattr(settings, 'ADMIN_HONEYPOT_RECORD_PASSWORD', False):
-        password_to_store = self.request.POST.get('password')
+        password_to_store = request.POST.get('password')
     else:
         password_to_store = None
     msg = {
