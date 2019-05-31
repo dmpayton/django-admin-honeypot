@@ -43,7 +43,7 @@ tl;dr
         urlpatterns = patterns(''
             ...
             url(r'^admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
-            url(r'^secret/', include(admin.site.urls)),
+            url(r'^secret/', admin.site.urls),
         )
 
 * Run ``python manage.py migrate``
