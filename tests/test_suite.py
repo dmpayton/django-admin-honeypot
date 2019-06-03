@@ -104,3 +104,28 @@ class AdminHoneypotTest(TestCase):
         honeypot_html = self.client.get(self.honeypot_url, follow=True).content.decode('utf-8')
         self.assertNotIn('{0}'.format(self.admin_url), honeypot_html)
         self.assertNotIn('{0}'.format(self.admin_login_url), honeypot_html)
+
+    def test_masked_ip(self):
+        """
+        Client IP saved when using ELB
+        :return:
+        """
+        data = {
+            'username': 'admin',
+            'password': 'letmein'
+        }
+
+        # test regular request
+        self.client.post(self.honeypot_login_url, data)
+        last_attempt = LoginAttempt.objects.latest('pk')
+        self.assertEqual('127.0.0.1', last_attempt.ip_address)
+
+        # test a single masked ip
+        self.client.post(self.honeypot_login_url, data, HTTP_X_FORWARDED_FOR='127.0.0.2')
+        last_attempt = LoginAttempt.objects.latest('pk')
+        self.assertEqual('127.0.0.2', last_attempt.ip_address)
+
+        # test with more then one masked ips
+        self.client.post(self.honeypot_login_url, data, HTTP_X_FORWARDED_FOR='127.0.0.3,127.0.0.2')
+        last_attempt = LoginAttempt.objects.latest('pk')
+        self.assertEqual('127.0.0.3', last_attempt.ip_address)

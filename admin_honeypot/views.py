@@ -10,6 +10,19 @@ from django.utils.translation import ugettext as _
 from django.views import generic
 
 
+def get_client_ip(request):
+    # when "HTTP_X_FORWARDED_FOR" header is present - use it to set client ip
+    ip = request.META.get('HTTP_X_FORWARDED_FOR')
+    if not ip:
+        ip = request.META.get('REMOTE_ADDR')
+
+    elif ',' in ip:
+        ip = ip.split(',')[-2]
+
+    ip = ip.strip()
+    return ip
+
+
 class AdminHoneypot(generic.FormView):
     template_name = 'admin_honeypot/login.html'
     form_class = HoneypotLoginForm
@@ -46,7 +59,7 @@ class AdminHoneypot(generic.FormView):
         instance = LoginAttempt.objects.create(
             username=self.request.POST.get('username'),
             session_key=self.request.session.session_key,
-            ip_address=self.request.META.get('REMOTE_ADDR'),
+            ip_address=get_client_ip(self.request),
             user_agent=self.request.META.get('HTTP_USER_AGENT'),
             path=self.request.get_full_path(),
         )
