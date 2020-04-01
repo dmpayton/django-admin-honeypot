@@ -9,11 +9,18 @@ from django.urls import reverse
 from django.utils.translation import ugettext as _
 from django.views import generic
 
+def get_client_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip
 
 class AdminHoneypot(generic.FormView):
     template_name = 'admin_honeypot/login.html'
     form_class = HoneypotLoginForm
-
+    
     def dispatch(self, request, *args, **kwargs):
         if not request.path.endswith('/'):
             return redirect(request.path + '/', permanent=True)
@@ -41,12 +48,12 @@ class AdminHoneypot(generic.FormView):
 
     def form_valid(self, form):
         return self.form_invalid(form)
-
+    
     def form_invalid(self, form):
         instance = LoginAttempt.objects.create(
             username=self.request.POST.get('username'),
             session_key=self.request.session.session_key,
-            ip_address=self.request.META.get('REMOTE_ADDR'),
+            ip_address=get_client_ip(self.request),
             user_agent=self.request.META.get('HTTP_USER_AGENT'),
             path=self.request.get_full_path(),
         )
