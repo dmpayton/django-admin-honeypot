@@ -5,7 +5,7 @@ Frequently Asked Questions
 Why can't I delete login attempts from the Django admin?
 ========================================================
 
-The delete permsission has been set to false for all users -- including
+The delete permission has been set to false for all users -- including
 superusers -- as an added security precaution. This is done so that, in the
 event that an attacker does make it into your admin, it will be harder to cover
 up their tracks if they had previously tried to break in through the honeypot.
