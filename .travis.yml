@@ -1,19 +1,12 @@
 language: python
+python:
+  - "3.7"
 
 matrix:
   include:
-
-    - env: TOXENV=django111-py27
-      python: '2.7'
-    - env: TOXENV=django111-py36
-      python: '3.6'
-    - env: TOXENV=django20-py36
-      python: '3.6'
-    - env: TOXENV=django30-py36
-      python: '3.6'
-
+    - env: TOXENV=django-2.2
+    - env: TOXENV=django-3.0
     - env: TOXENV=coverage
-      python: '3.6'
 
 install:
   - pip install tox
