@@ -5,7 +5,7 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
-ADMINS = MANAGERS = (('Admin User', 'admin@example.com'))
+ADMINS = MANAGERS = [('Admin User', 'admin@example.com')]
 
 DATABASES = {
     'default': {

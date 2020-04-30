@@ -40,13 +40,12 @@ tl;dr
 
     ::
 
-        urlpatterns = patterns(''
+        urlpatterns = [
             ...
-            url(r'^admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
-            url(r'^secret/', admin.site.urls),
-        )
+            path('admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
+            path('secret/', admin.site.urls),
+        ]
 
 * Run ``python manage.py migrate``
 
 NOTE: replace ``secret`` in the url above with your own secret url prefix
-

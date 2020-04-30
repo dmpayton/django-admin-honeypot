@@ -9,6 +9,8 @@ matrix:
       python: '3.6'
     - env: TOXENV=django20-py36
       python: '3.6'
+    - env: TOXENV=django30-py36
+      python: '3.6'
 
     - env: TOXENV=coverage
       python: '3.6'
