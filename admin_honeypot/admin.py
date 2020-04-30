@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.utils.safestring import mark_safe
+from django.utils.html import format_html
 from django.utils.translation import ugettext_lazy as _
 
 from admin_honeypot.models import LoginAttempt
@@ -18,19 +18,16 @@ class LoginAttemptAdmin(admin.ModelAdmin):
         return actions
 
     def get_session_key(self, instance):
-        return mark_safe('<a href="?session_key=%(key)s">%(key)s</a>' % {'key': instance.session_key})
+        return format_html('<a href="?session_key={sk}">{sk}</a>', sk=instance.session_key)
     get_session_key.short_description = _('Session')
-    get_session_key.allow_tags = True
 
     def get_ip_address(self, instance):
-        return mark_safe('<a href="?ip_address=%(ip)s">%(ip)s</a>' % {'ip': instance.ip_address})
+        return format_html('<a href="?ip_address={ip}">{ip}</a>', ip=instance.ip_address)
     get_ip_address.short_description = _('IP Address')
-    get_ip_address.allow_tags = True
 
     def get_path(self, instance):
-        return mark_safe('<a href="?path=%(path)s">%(path)s</a>' % {'path': instance.path})
+        return format_html('<a href="?path={path}">{path}</a>', path=instance.path)
     get_path.short_description = _('URL')
-    get_path.allow_tags = True
 
     def has_add_permission(self, request, obj=None):
         return False
