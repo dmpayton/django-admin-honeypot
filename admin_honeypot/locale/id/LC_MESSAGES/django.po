@@ -1,0 +1,106 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-02-18 22:19+0700\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Agus Makmun <agus@python.web.id>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: admin_honeypot/admin.py:21
+msgid "Session"
+msgstr "Sesi"
+
+#: admin_honeypot/admin.py:26
+#: admin_honeypot/templates/admin_honeypot/email_message.txt:4
+msgid "IP Address"
+msgstr "Alamat IP"
+
+#: admin_honeypot/admin.py:31
+msgid "URL"
+msgstr ""
+
+#: admin_honeypot/admin.py:36
+msgid "Country Name"
+msgstr "Nama Negara"
+
+#: admin_honeypot/models.py:8
+msgid "username"
+msgstr ""
+
+#: admin_honeypot/models.py:9
+msgid "ip address"
+msgstr "alamat ip"
+
+#: admin_honeypot/models.py:10
+msgid "session key"
+msgstr "key sesi"
+
+#: admin_honeypot/models.py:11
+msgid "user-agent"
+msgstr ""
+
+#: admin_honeypot/models.py:12
+msgid "timestamp"
+msgstr "waktu"
+
+#: admin_honeypot/models.py:13
+msgid "path"
+msgstr "alamat"
+
+#: admin_honeypot/models.py:14
+msgid "record by address"
+msgstr "rekaman berdasarkan alamat"
+
+#: admin_honeypot/models.py:17
+msgid "login attempt"
+msgstr "percobaan login"
+
+#: admin_honeypot/models.py:18
+msgid "login attempts"
+msgstr "percobaan login"
+
+#: admin_honeypot/templates/admin_honeypot/email_message.txt:1
+#, python-format
+msgid ""
+"This is an automatic email to notify you that someone tried to login to the "
+"admin honeypot on %(host)s"
+msgstr ""
+"Ini adalah email otomatis untuk memberitahukan Anda bahwa ada seseorang yang "
+"mencoba untuk loginadmin honeypot pada %(host)s"
+
+#: admin_honeypot/templates/admin_honeypot/email_message.txt:3
+msgid "Username"
+msgstr ""
+
+#: admin_honeypot/templates/admin_honeypot/email_message.txt:5
+msgid "Timestamp"
+msgstr "Waktu"
+
+#: admin_honeypot/templates/admin_honeypot/email_message.txt:6
+msgid "Record by Address"
+msgstr "Rekaman berdasarkan Alamat"
+
+#: admin_honeypot/templates/admin_honeypot/email_subject.txt:1
+#, python-format
+msgid "[admin-honeypot] attempted login from %(ip)s at %(host)s"
+msgstr "[admin-honeypot] percobaan login dari %(ip)s ke %(host)s"
+
+#: admin_honeypot/templates/admin_honeypot/login.html:4
+msgid "Django administration"
+msgstr ""
+
+#: admin_honeypot/views.py:46
+msgid "Log in"
+msgstr "Masuk"

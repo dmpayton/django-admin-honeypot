@@ -1,3 +1,4 @@
+import ast
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from admin_honeypot import listeners
@@ -10,6 +11,7 @@ class LoginAttempt(models.Model):
     user_agent = models.TextField(_("user-agent"), blank=True, null=True)
     timestamp = models.DateTimeField(_("timestamp"), auto_now_add=True)
     path = models.TextField(_("path"), blank=True, null=True)
+    record_by_address = models.TextField(_("record by address"), blank=True, null=True)
 
     class Meta:
         verbose_name = _("login attempt")
@@ -18,3 +20,14 @@ class LoginAttempt(models.Model):
 
     def __str__(self):
         return self.username
+
+    def get_record_by_address(self):
+        """
+        return dictionary from field of `record_by_address`
+        """
+        try:
+            return ast.literal_eval(self.record_by_address)
+        except ValueError:
+            return {}
+
+    get_record_by_address.allow_tags = True

@@ -1,4 +1,6 @@
 import django
+import pygeoip
+import ipaddress
 from admin_honeypot.forms import HoneypotLoginForm
 from admin_honeypot.models import LoginAttempt
 from admin_honeypot.signals import honeypot
@@ -8,6 +10,12 @@ from django.shortcuts import redirect
 from django.urls import reverse
 from django.utils.translation import ugettext as _
 from django.views import generic
+from django.conf import settings
+
+
+ALLOW_TRACK_ADDRESS = getattr(settings, 'ADMIN_HONEYPOT_ALLOW_TRACK_ADDRESS', False)
+PATH_GEOIPV4_CITY = getattr(settings, 'ADMIN_HONEYPOT_PATH_GEOIPV4_CITY', None)
+PATH_GEOIPV6_CITY = getattr(settings, 'ADMIN_HONEYPOT_PATH_GEOIPV6_CITY', None)
 
 
 class AdminHoneypot(generic.FormView):
@@ -42,6 +50,26 @@ class AdminHoneypot(generic.FormView):
     def form_valid(self, form):
         return self.form_invalid(form)
 
+    def track_ipaddres(self, ip):
+        """
+        track detail ip address from client ip.
+        return None, if `ALLOW_TRACK_ADDRESS = False` or invalid ipaddress.
+        related issue: https://github.com/dmpayton/django-admin-honeypot/issues/41
+        """
+        if ALLOW_TRACK_ADDRESS is False:
+            return None
+
+        try:
+            ipv_version = ipaddress.ip_address(u'%s' % ip).version
+            if ipv_version == 6:
+                gi = pygeoip.GeoIP(PATH_GEOIPV6_CITY)
+            else:
+                gi = pygeoip.GeoIP(PATH_GEOIPV4_CITY)
+            return gi.record_by_addr(ip)
+        except ValueError:
+            # invalid ipv4 or ipv6
+            return None
+
     def form_invalid(self, form):
         instance = LoginAttempt.objects.create(
             username=self.request.POST.get('username'),
@@ -49,6 +77,9 @@ class AdminHoneypot(generic.FormView):
             ip_address=self.request.META.get('REMOTE_ADDR'),
             user_agent=self.request.META.get('HTTP_USER_AGENT'),
             path=self.request.get_full_path(),
+            record_by_address=self.track_ipaddres(
+                self.request.META.get('REMOTE_ADDR')
+            )
         )
         honeypot.send(sender=LoginAttempt, instance=instance, request=self.request)
         return super(AdminHoneypot, self).form_invalid(form)
