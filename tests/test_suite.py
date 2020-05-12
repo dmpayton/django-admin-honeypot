@@ -1,19 +1,17 @@
 import re
 
+from urllib.parse import quote_plus
+
 import django
 import pytest
-from admin_honeypot.models import LoginAttempt
+
 from django.conf import settings
 from django.core import mail
 from django.test import TestCase
 from django.urls import reverse
 
-try:
-    # Python 2.7
-    from urllib import quote_plus
-except ImportError:
-    # Python 3+
-    from urllib.parse import quote_plus
+from admin_honeypot.models import LoginAttempt
+
 
 class AdminHoneypotTest(TestCase):
     maxDiff = None

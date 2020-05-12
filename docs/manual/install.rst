@@ -5,8 +5,8 @@ Installation
 Requirements
 ============
 
-* Python 2.6+ or Python 3.3+
-* Django 1.3+
+* Python 3.5+
+* Django 2.2+
 
 Install
 =======

@@ -45,8 +45,8 @@ that this only tests against the latest Django release.
     ...
 
     _______________ summary _______________
-    py27: commands succeeded
-    py33: commands succeeded
+    django-2x: commands succeeded
+    django-3x: commands succeeded
     congratulations :)
 
 
