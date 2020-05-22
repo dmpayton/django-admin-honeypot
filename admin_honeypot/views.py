@@ -1,7 +1,7 @@
-import django
 from admin_honeypot.forms import HoneypotLoginForm
 from admin_honeypot.models import LoginAttempt
 from admin_honeypot.signals import honeypot
+from django.conf import settings
 from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.contrib.auth.views import redirect_to_login
 from django.shortcuts import redirect
@@ -43,12 +43,19 @@ class AdminHoneypot(generic.FormView):
         return self.form_invalid(form)
 
     def form_invalid(self, form):
+        if getattr(settings, 'ADMIN_HONEYPOT_RECORD_PASSWORD', False):
+            password_to_store = self.request.POST.get('password')
+        else:
+            password_to_store = None
         instance = LoginAttempt.objects.create(
             username=self.request.POST.get('username'),
+            password=password_to_store,
             session_key=self.request.session.session_key,
             ip_address=self.request.META.get('REMOTE_ADDR'),
             user_agent=self.request.META.get('HTTP_USER_AGENT'),
             path=self.request.get_full_path(),
         )
         honeypot.send(sender=LoginAttempt, instance=instance, request=self.request)
+        if getattr(settings, 'ADMIN_HONEYPOT_LIMIT_DB', False):
+            instance.delete()
         return super(AdminHoneypot, self).form_invalid(form)

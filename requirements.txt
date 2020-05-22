@@ -3,3 +3,4 @@ pytest-cov
 pytest-django
 pytest-pep8
 pytest-pythonpath
+hpfeeds3==0.9.6
