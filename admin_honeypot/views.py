@@ -8,6 +8,7 @@ from django.shortcuts import redirect
 from django.urls import reverse
 from django.utils.translation import gettext as _
 from django.views import generic
+from ipware import get_client_ip
 
 
 class AdminHoneypot(generic.FormView):
@@ -43,10 +44,11 @@ class AdminHoneypot(generic.FormView):
         return self.form_invalid(form)
 
     def form_invalid(self, form):
+        ip, is_routable = get_client_ip(self.request)
         instance = LoginAttempt.objects.create(
             username=self.request.POST.get('username'),
             session_key=self.request.session.session_key,
-            ip_address=self.request.META.get('REMOTE_ADDR'),
+            ip_address=ip,
             user_agent=self.request.META.get('HTTP_USER_AGENT'),
             path=self.request.get_full_path(),
         )

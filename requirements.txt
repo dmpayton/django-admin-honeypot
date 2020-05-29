@@ -3,3 +3,4 @@ pytest-cov
 pytest-django
 pytest-pep8
 pytest-pythonpath
+django-ipware==2.1.0
