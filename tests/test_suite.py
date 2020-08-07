@@ -1,9 +1,5 @@
 import re
-
 from urllib.parse import quote_plus
-
-import django
-import pytest
 
 from django.conf import settings
 from django.core import mail
@@ -14,7 +10,7 @@ from admin_honeypot.models import LoginAttempt
 
 
 class AdminHoneypotTest(TestCase):
-    maxDiff = None
+    max_diff = None
 
     @property
     def admin_login_url(self):
@@ -40,16 +36,17 @@ class AdminHoneypotTest(TestCase):
         """
 
         admin_html = self.client.get(self.admin_url, follow=True).content.decode('utf-8')
-        honeypot_html = (self.client.get(self.honeypot_url, follow=True).content.decode('utf-8')
-            # /admin/login/ -> /secret/login/
-            .replace(self.honeypot_login_url, self.admin_login_url)
+        honeypot_html = \
+            (self.client.get(self.honeypot_url, follow=True).content.decode('utf-8')
+             # /admin/login/ -> /secret/login/
+             .replace(self.honeypot_login_url, self.admin_login_url)
 
-            # "/admin/" -> "/secret/"
-            .replace('"{0}"'.format(self.honeypot_url), '"{0}"'.format(self.admin_url))
+             # "/admin/" -> "/secret/"
+             .replace('"{0}"'.format(self.honeypot_url), '"{0}"'.format(self.admin_url))
 
-            # %2fadmin%2f -> %2fsecret%2f
-            .replace(quote_plus(self.honeypot_url), quote_plus(self.admin_url))
-        )
+             # %2fadmin%2f -> %2fsecret%2f
+             .replace(quote_plus(self.honeypot_url), quote_plus(self.admin_url))
+             )
 
         # Drop CSRF token
         csrf_re = re.compile(r"(<input [^/>]+ value=['\"])[a-zA-Z0-9]+")

@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-import sys
 from admin_honeypot import __version__, __description__, __license__
 
 try:
