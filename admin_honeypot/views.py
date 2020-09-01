@@ -1,4 +1,6 @@
 import django
+from django.contrib import admin
+
 from admin_honeypot.forms import HoneypotLoginForm
 from admin_honeypot.models import LoginAttempt
 from admin_honeypot.signals import honeypot
@@ -36,6 +38,9 @@ class AdminHoneypot(generic.FormView):
             'app_path': path,
             REDIRECT_FIELD_NAME: reverse('admin_honeypot:index'),
             'title': _('Log in'),
+            'site_title': admin.site.site_title,
+            'site_header': admin.site.site_header,
+            'username': self.request.user.get_username(),
         })
         return context
 
