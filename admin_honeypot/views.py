@@ -23,13 +23,13 @@ class AdminHoneypot(generic.FormView):
         if request.path != login_url:
             return redirect_to_login(request.get_full_path(), login_url)
 
-        return super(AdminHoneypot, self).dispatch(request, *args, **kwargs)
+        return super().dispatch(request, *args, **kwargs)
 
     def get_form(self, form_class=form_class):
         return form_class(self.request, **self.get_form_kwargs())
 
     def get_context_data(self, **kwargs):
-        context = super(AdminHoneypot, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         path = self.request.get_full_path()
         context.update({
             'app_path': path,
@@ -50,4 +50,4 @@ class AdminHoneypot(generic.FormView):
             path=self.request.get_full_path(),
         )
         honeypot.send(sender=LoginAttempt, instance=instance, request=self.request)
-        return super(AdminHoneypot, self).form_invalid(form)
+        return super().form_invalid(form)

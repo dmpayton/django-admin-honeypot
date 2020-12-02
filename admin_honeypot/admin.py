@@ -12,7 +12,7 @@ class LoginAttemptAdmin(admin.ModelAdmin):
     search_fields = ('username', 'ip_address', 'user_agent', 'path')
 
     def get_actions(self, request):
-        actions = super(LoginAttemptAdmin, self).get_actions(request)
+        actions = super().get_actions(request)
         if 'delete_selected' in actions:
             del actions['delete_selected']
         return actions
