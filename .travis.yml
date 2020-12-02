@@ -4,6 +4,7 @@ python:
   - 3.6
   - 3.7
   - 3.8
+  - 3.9
 env:
     - TOXENV=django-2.2
     - TOXENV=django-3.0
