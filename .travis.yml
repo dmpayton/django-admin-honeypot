@@ -6,7 +6,6 @@ matrix:
   include:
     - env: TOXENV=django-2.2
     - env: TOXENV=django-3.0
-    - env: TOXENV=coverage
 
 install:
   - pip install tox
