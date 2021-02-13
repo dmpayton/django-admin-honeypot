@@ -47,7 +47,7 @@ class AdminHoneypot(generic.FormView):
         #Get IP if behind load balancer / proxy
         x_forwarded_for = self.request.META.get('HTTP_X_FORWARDED_FOR')
         if x_forwarded_for:
-            ip = self.x_forwarded_for.split(',')[0]
+            ip = x_forwarded_for.split(',')[0]
         else:
             ip = self.request.META.get('REMOTE_ADDR')
      
