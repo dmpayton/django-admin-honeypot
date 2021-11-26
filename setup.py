@@ -50,6 +50,9 @@ setup(
         'django-ipware',
     ],
     extras_require={
+        'dev': [
+            'twine',
+        ],
         'tests': [
             'pytest',
             'pytest-cov',
