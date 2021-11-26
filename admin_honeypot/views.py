@@ -5,12 +5,14 @@ from ipware import get_client_ip
 from admin_honeypot.forms import HoneypotLoginForm
 from admin_honeypot.models import LoginAttempt
 from admin_honeypot.signals import honeypot
+from django.contrib.admin import AdminSite
 from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.contrib.auth.views import redirect_to_login
 from django.shortcuts import redirect
 from django.urls import reverse
 from django.utils.translation import gettext as _
 from django.views import generic
+
 
 
 class AdminHoneypot(generic.FormView):
@@ -35,10 +37,14 @@ class AdminHoneypot(generic.FormView):
     def get_context_data(self, **kwargs):
         context = super(AdminHoneypot, self).get_context_data(**kwargs)
         path = self.request.get_full_path()
+        admin_site = AdminSite()
         context.update({
             'app_path': path,
             REDIRECT_FIELD_NAME: reverse('admin_honeypot:index'),
             'title': _('Log in'),
+            'site_title': admin_site.site_title,
+            'site_header': admin_site.site_header,
+            'username': self.request.user.get_username(),
         })
         return context
 
