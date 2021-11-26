@@ -1,9 +1,5 @@
 import re
-
 from urllib.parse import quote_plus
-
-import django
-import pytest
 
 from django.conf import settings
 from django.core import mail
@@ -14,7 +10,7 @@ from admin_honeypot.models import LoginAttempt
 
 
 class AdminHoneypotTest(TestCase):
-    maxDiff = None
+    max_diff = None
 
     @property
     def admin_login_url(self):

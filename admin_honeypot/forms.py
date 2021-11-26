@@ -1,4 +1,3 @@
-import django
 from django import forms
 from django.contrib.admin.forms import AdminAuthenticationForm
 

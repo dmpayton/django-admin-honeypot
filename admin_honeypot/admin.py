@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils.html import format_html
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 from admin_honeypot.models import LoginAttempt
 
@@ -12,7 +12,7 @@ class LoginAttemptAdmin(admin.ModelAdmin):
     search_fields = ('username', 'ip_address', 'user_agent', 'path')
 
     def get_actions(self, request):
-        actions = super(LoginAttemptAdmin, self).get_actions(request)
+        actions = super().get_actions(request)
         if 'delete_selected' in actions:
             del actions['delete_selected']
         return actions
@@ -34,5 +34,6 @@ class LoginAttemptAdmin(admin.ModelAdmin):
 
     def has_delete_permission(self, request, obj=None):
         return False
+
 
 admin.site.register(LoginAttempt, LoginAttemptAdmin)

@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-import sys
 from admin_honeypot import __version__, __description__, __license__
 
 try:
@@ -17,6 +16,7 @@ setup(
         'Framework :: Django',
         'Framework :: Django :: 2.2',
         'Framework :: Django :: 3.0',
+        'Framework :: Django :: 3.1',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
         'Natural Language :: English',

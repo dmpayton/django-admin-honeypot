@@ -17,5 +17,6 @@ def notify_admins(instance, request, **kwargs):
     message = render_to_string('admin_honeypot/email_message.txt', context).strip()
     mail_admins(subject=subject, message=message)
 
+
 if getattr(settings, 'ADMIN_HONEYPOT_EMAIL_ADMINS', True):
     honeypot.connect(notify_admins)

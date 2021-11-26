@@ -2,6 +2,10 @@
 django-admin-honeypot
 =====================
 
+.. image:: https://img.shields.io/pypi/v/django-admin-honeypot.svg
+   :target: https://pypi.python.org/pypi/django-admin-honeypot/
+   :alt: pypi version
+
 .. image:: https://travis-ci.org/dmpayton/django-admin-honeypot.svg?branch=develop
    :target: https://travis-ci.org/dmpayton/django-admin-honeypot
    :alt: Travis-CI
@@ -13,6 +17,10 @@ django-admin-honeypot
 .. image:: https://codeclimate.com/github/dmpayton/django-admin-honeypot/badges/gpa.svg?branch=develop
    :target: https://codeclimate.com/github/dmpayton/django-admin-honeypot
    :alt: Code Climate
+
+.. image:: https://pepy.tech/badge/django-admin-honeypot
+   :target: https://pepy.tech/project/django-admin-honeypot
+   :alt: pypi downloads
 
 
 **django-admin-honeypot** is a fake Django admin login screen to log and notify

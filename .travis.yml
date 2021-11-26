@@ -1,11 +1,20 @@
 language: python
 python:
+  - "3.5"
+  - "3.6"
   - "3.7"
-
+  - "3.8"
+  - "3.9"
+env:
+    - TOXENV=django-2.2
+    - TOXENV=django-3.0
+    - TOXENV=django-3.1
 matrix:
-  include:
-    - env: TOXENV=django-2.2
-    - env: TOXENV=django-3.0
+  exclude:
+    - python: "3.5"
+      env: TOXENV=django-3.0
+    - python: "3.5"
+      env: TOXENV=django-3.1
 
 install:
   - pip install tox
