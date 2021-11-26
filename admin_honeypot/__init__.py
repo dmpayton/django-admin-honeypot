@@ -1,5 +1,6 @@
 __author__ = 'Derek Payton <derek.payton@gmail.com>'
-__copyright__ = 'Copyright (c) Derek Payton'
+__maintainer__ = 'blag <blag@users.noreply.github.com>'
+__copyright__ = 'Copyright (c) Derek Payton, blag'
 __description__ = 'A fake Django admin login screen to notify admins of attempted unauthorized access.'
 __version__ = '1.1.0'
-__license__ = 'MIT License'
+__license__ = 'MIT'
