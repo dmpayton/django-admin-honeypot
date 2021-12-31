@@ -1,4 +1,4 @@
-from django.conf.urls import include, re_path
+from django.urls import include, re_path
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
