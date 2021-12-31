@@ -1,11 +1,12 @@
 language: python
 python:
-  - "3.7"
+  - "3.10"
 
 matrix:
   include:
     - env: TOXENV=django-2.2
-    - env: TOXENV=django-3.0
+    - env: TOXENV=django-3.2
+    - env: TOXENV=django-4.0
     - env: TOXENV=coverage
 
 install:
