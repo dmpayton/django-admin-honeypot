@@ -1,5 +1,4 @@
 pytest
 pytest-cov
 pytest-django
-pytest-pep8
 pytest-pythonpath
