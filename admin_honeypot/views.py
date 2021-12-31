@@ -1,7 +1,10 @@
 import django
+
 from admin_honeypot.forms import HoneypotLoginForm
 from admin_honeypot.models import LoginAttempt
 from admin_honeypot.signals import honeypot
+
+from django.contrib import admin
 from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.contrib.auth.views import redirect_to_login
 from django.shortcuts import redirect
@@ -31,9 +34,9 @@ class AdminHoneypot(generic.FormView):
 
     def get_context_data(self, **kwargs):
         context = super(AdminHoneypot, self).get_context_data(**kwargs)
-        path = self.request.get_full_path()
         context.update({
-            'app_path': path,
+            **admin.site.each_context(self.request),
+            'app_path': self.request.get_full_path(),
             REDIRECT_FIELD_NAME: reverse('admin_honeypot:index'),
             'title': _('Log in'),
         })
