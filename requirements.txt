@@ -1,3 +1,6 @@
+django
+django-ipware
+
 pytest
 pytest-cov
 pytest-django
