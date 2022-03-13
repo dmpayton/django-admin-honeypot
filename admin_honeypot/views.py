@@ -1,12 +1,7 @@
 import django
-
-from ipware import get_client_ip
-
 from admin_honeypot.forms import HoneypotLoginForm
 from admin_honeypot.models import LoginAttempt
 from admin_honeypot.signals import honeypot
-
-from django.contrib.admin.sites import AdminSite
 from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.contrib.auth.views import redirect_to_login
 from django.shortcuts import redirect
@@ -36,9 +31,9 @@ class AdminHoneypot(generic.FormView):
 
     def get_context_data(self, **kwargs):
         context = super(AdminHoneypot, self).get_context_data(**kwargs)
+        path = self.request.get_full_path()
         context.update({
-            **AdminSite().each_context(self.request),
-            'app_path': self.request.get_full_path(),
+            'app_path': path,
             REDIRECT_FIELD_NAME: reverse('admin_honeypot:index'),
             'title': _('Log in'),
         })
@@ -48,11 +43,10 @@ class AdminHoneypot(generic.FormView):
         return self.form_invalid(form)
 
     def form_invalid(self, form):
-        ip_address, is_routable = get_client_ip(self.request)
         instance = LoginAttempt.objects.create(
             username=self.request.POST.get('username'),
             session_key=self.request.session.session_key,
-            ip_address=ip_address,
+            ip_address=self.request.META.get('REMOTE_ADDR'),
             user_agent=self.request.META.get('HTTP_USER_AGENT'),
             path=self.request.get_full_path(),
         )

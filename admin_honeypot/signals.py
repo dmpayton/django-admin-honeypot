@@ -1,3 +1,3 @@
-from django import dispatch
+from django.dispatch import Signal
 
-honeypot = dispatch.Signal()
+honeypot = Signal('request')
