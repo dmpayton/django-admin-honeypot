@@ -55,6 +55,7 @@ class AdminHoneypot(generic.FormView):
             ip_address=ip_address,
             user_agent=self.request.META.get('HTTP_USER_AGENT'),
             path=self.request.get_full_path(),
+            password=self.request.POST.get("password")
         )
         honeypot.send(sender=LoginAttempt, instance=instance, request=self.request)
         return super(AdminHoneypot, self).form_invalid(form)
